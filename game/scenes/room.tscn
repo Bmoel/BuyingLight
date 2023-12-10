@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/room.gd" type="Script" id=1]
+[ext_resource path="res://scenes/playerUI.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 19966, 714 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1032, 19993 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 19925, 1081 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1279, 19943.5 )
+
+[node name="Room" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="backgound" type="ColorRect" parent="."]
+margin_right = 40000.0
+margin_bottom = 40000.0
+color = Color( 0.0823529, 0.0745098, 0.0745098, 1 )
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2( 19956, -724 )
+shape = SubResource( 1 )
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 39986, 0 )
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2( 1022, 19983 )
+shape = SubResource( 2 )
+
+[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 0, 39932 )
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+position = Vector2( 19915, 1071 )
+shape = SubResource( 3 )
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2( -1289, 19933.5 )
+shape = SubResource( 4 )
+
+[node name="PlayerAndUI" parent="." instance=ExtResource( 2 )]

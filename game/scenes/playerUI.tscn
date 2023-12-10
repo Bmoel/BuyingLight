@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/minimap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/character.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/playerUI.gd" type="Script" id=3]
+
+[node name="UI" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Character" parent="." instance=ExtResource( 2 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="minimap" parent="CanvasLayer" instance=ExtResource( 1 )]
+position = Vector2( 1560, 8 )

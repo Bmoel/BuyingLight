@@ -58,10 +58,16 @@ func _physics_process(delta):
 	controlAnimations(velocity);
 
 func getNextCharacter(character: String) -> String:
-	match character:
-		"knight": return "archer";
-		"archer": return "shotgunner";
-		_: return "knight"; #covers shotgunner case too
+	var unlockedHeroes: Array = Global.getHeroesUnlocked();
+	var found: bool = false;
+	for hero in unlockedHeroes:
+		if hero == character:
+			found = true;
+		if found:
+			return hero;
+	if found and len(unlockedHeroes) > 0:
+		return unlockedHeroes[0];
+	return "knight";
 
 func handleNextCharacterSpawn():
 	var newScale: Vector2 = CHARACTER_SCALES.get(currentCharacter);

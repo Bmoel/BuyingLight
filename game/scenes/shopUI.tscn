@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scripts/shopUI.gd" type="Script" id=1]
 [ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,12 @@
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 2 )
+
+[sub_resource type="InputEventKey" id=12]
+scancode = 81
+
+[sub_resource type="ShortCut" id=13]
+shortcut = SubResource( 12 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
@@ -19,6 +25,12 @@ font_data = ExtResource( 2 )
 size = 64
 font_data = ExtResource( 2 )
 
+[sub_resource type="InputEventKey" id=14]
+scancode = 69
+
+[sub_resource type="ShortCut" id=15]
+shortcut = SubResource( 14 )
+
 [sub_resource type="DynamicFont" id=5]
 size = 32
 font_data = ExtResource( 2 )
@@ -26,6 +38,12 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=11]
 size = 32
 font_data = ExtResource( 2 )
+
+[sub_resource type="InputEventKey" id=16]
+scancode = 49
+
+[sub_resource type="ShortCut" id=17]
+shortcut = SubResource( 16 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 32
@@ -35,13 +53,31 @@ font_data = ExtResource( 2 )
 size = 32
 font_data = ExtResource( 2 )
 
+[sub_resource type="InputEventKey" id=18]
+scancode = 50
+
+[sub_resource type="ShortCut" id=19]
+shortcut = SubResource( 18 )
+
 [sub_resource type="DynamicFont" id=7]
 size = 32
 font_data = ExtResource( 2 )
 
+[sub_resource type="InputEventKey" id=20]
+scancode = 51
+
+[sub_resource type="ShortCut" id=21]
+shortcut = SubResource( 20 )
+
 [sub_resource type="DynamicFont" id=8]
 size = 32
 font_data = ExtResource( 2 )
+
+[sub_resource type="InputEventKey" id=22]
+scancode = 52
+
+[sub_resource type="ShortCut" id=23]
+shortcut = SubResource( 22 )
 
 [sub_resource type="DynamicFont" id=9]
 size = 32
@@ -68,6 +104,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_colors/font_color = Color( 0.827451, 0.831373, 0.0980392, 1 )
 custom_fonts/font = SubResource( 1 )
+shortcut = SubResource( 13 )
 text = "Reveal"
 
 [node name="key" type="Label" parent="ShopContainer/buttonHolder/Reveal"]
@@ -96,6 +133,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_colors/font_color = Color( 0.105882, 0.992157, 0.243137, 1 )
 custom_fonts/font = SubResource( 2 )
+shortcut = SubResource( 15 )
 text = "Roll"
 
 [node name="key" type="Label" parent="ShopContainer/buttonHolder/Roll"]
@@ -126,6 +164,7 @@ custom_constants/separation = 5
 margin_right = 200.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 200, 0 )
+shortcut = SubResource( 17 )
 
 [node name="upgrade1Text" type="RichTextLabel" parent="ShopContainer/rollButtons/upgrade1"]
 anchor_right = 1.0
@@ -148,6 +187,7 @@ margin_left = 205.0
 margin_right = 405.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 200, 0 )
+shortcut = SubResource( 19 )
 
 [node name="upgrade2Text" type="RichTextLabel" parent="ShopContainer/rollButtons/upgrade2"]
 anchor_right = 1.0
@@ -168,6 +208,7 @@ margin_left = 410.0
 margin_right = 610.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 200, 0 )
+shortcut = SubResource( 21 )
 
 [node name="upgrade3Text" type="RichTextLabel" parent="ShopContainer/rollButtons/upgrade3"]
 anchor_right = 1.0
@@ -188,6 +229,7 @@ margin_left = 615.0
 margin_right = 815.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 200, 0 )
+shortcut = SubResource( 23 )
 
 [node name="upgrade4Text" type="RichTextLabel" parent="ShopContainer/rollButtons/upgrade4"]
 anchor_right = 1.0

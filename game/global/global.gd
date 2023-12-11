@@ -1,18 +1,40 @@
 extends Node
 
-#region variables
+### region global variables ###
 var _currentGold: int = 0;
-#end region variables
+var _numberHeroesUnlocked: int = 1;
+var _heroesUnlocked: Array = ["knight"];
+#end region global variables
 
-#region helper functions
+### region helper functions ###
 func setupGame() -> void:
 	_currentGold = 10;
-#end region helper functions
 
-#region getter/setter functions
+func subtractFromCurrentGold(goldToSubtract: int) -> void:
+	_currentGold -= goldToSubtract;
+
+func addHeroToUnlocked(newHero: String) -> void:
+	if newHero in _heroesUnlocked:
+		return;
+	_heroesUnlocked.append(newHero);
+### end region helper functions ###
+
+### region getter/setter functions ###
 func getCurrentGold() -> int:
 	return _currentGold;
 
 func setCurrentGold(goldValue: int) -> void:
 	_currentGold = goldValue;
-#end region getter/setter functions
+
+func getNumberHeroesUnlocked() -> int:
+	return _numberHeroesUnlocked;
+
+func setNumberHeroesUnlocked(newHeroCount: int) -> void:
+	_numberHeroesUnlocked = newHeroCount;
+
+func getHeroesUnlocked() -> Array:
+	return _heroesUnlocked;
+
+func setHeroesUnlocked(heroesArray: Array) -> void:
+	_heroesUnlocked = heroesArray;
+### end region getter/setter functions ###

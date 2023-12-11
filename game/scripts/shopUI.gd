@@ -1,26 +1,20 @@
 extends Node2D
 
-func _input(_event):
-	if Input.is_action_just_pressed("buy_visibility"):
-		$ShopContainer/buttonHolder/Reveal.pressed = true;
-		_on_Reveal_pressed();
-	elif Input.is_action_just_pressed("buy_roll"):
-		_on_Roll_pressed();
-	elif Input.is_action_just_pressed("buy_upgrade1"):
-		_on_upgrade1_pressed();
-	elif Input.is_action_just_pressed("buy_upgrade2"):
-		_on_upgrade2_pressed();
-	elif Input.is_action_just_pressed("buy_upgrade3"):
-		_on_upgrade3_pressed();
-	elif Input.is_action_just_pressed("buy_upgrade4"):
-		_on_upgrade4_pressed();
+const REVEAL_COST = 4;
+const ROLL_COST = 2;
+
+func canBuy(cost: int) -> bool:
+	return cost <= Global.getCurrentGold();
 
 func _on_Reveal_pressed():
+	if canBuy(REVEAL_COST):
+		Global.subtractFromCurrentGold(REVEAL_COST);
 	$ShopContainer/buttonHolder/Reveal.release_focus();
 
 func _on_Roll_pressed():
-	pass
-	#$ShopContainer/buttonHolder/Roll.release_focus();
+	if canBuy(ROLL_COST):
+		Global.subtractFromCurrentGold(ROLL_COST);
+	$ShopContainer/buttonHolder/Roll.release_focus();
 
 func _on_upgrade1_pressed():
 	$ShopContainer/rollButtons/upgrade1.release_focus();

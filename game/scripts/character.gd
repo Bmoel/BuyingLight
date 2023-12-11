@@ -4,7 +4,7 @@ onready var animationPlayer: AnimatedSprite = $Pivot/spriteFrames;
 
 var currentCharacter: String = "knight";
 const CHARACTER_SCALES: Dictionary = {
-	"knight": Vector2(1,1),
+	"knight": Vector2(2,2),
 	"archer": Vector2(2,2),
 	"shotgunner": Vector2(2,2)
 }

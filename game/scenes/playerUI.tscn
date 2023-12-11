@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/minimap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/playerUI.gd" type="Script" id=3]
+[ext_resource path="res://scenes/shopUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 5 )
 
 [node name="UI" type="Node2D"]
 script = ExtResource( 3 )
@@ -12,4 +22,36 @@ script = ExtResource( 3 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="minimap" parent="CanvasLayer" instance=ExtResource( 1 )]
-position = Vector2( 1560, 8 )
+position = Vector2( 1712, 8 )
+
+[node name="shop" parent="CanvasLayer" instance=ExtResource( 4 )]
+position = Vector2( 8, 8 )
+
+[node name="Keybinds" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 1040.0
+margin_top = 8.0
+margin_right = 1240.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 200, 60 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Hide shop: [color=#03f0fc]Tab[/color]
+Swap Hero: [color=#edc02d]Shift[/color]
+"
+text = "Hide shop: Tab
+Swap Hero: Shift
+"
+scroll_active = false
+
+[node name="Gold" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 1040.0
+margin_top = 64.0
+margin_right = 1240.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 200, 60 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "----------------
+Total [color=#e6c829]G[/color]:"
+text = "----------------
+Total G:"

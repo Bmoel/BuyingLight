@@ -19,6 +19,7 @@ func _ready():
 	$buttonGroup/Play.grab_focus();
 
 func _on_Play_pressed():
+	Global.setupGame();
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene(GAME_PATH);
 

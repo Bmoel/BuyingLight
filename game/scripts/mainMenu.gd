@@ -83,3 +83,7 @@ func _on_CreditsWindow_popup_hide():
 
 func _on_OptionsWindow_popup_hide():
 	lightHolder.show();
+
+func _on_DEBUG_BUTTON_pressed():
+	Global.setHeroesUnlocked(["knight", "shotgunner", "archer"]);
+	Global.setNumberHeroesUnlocked(3);

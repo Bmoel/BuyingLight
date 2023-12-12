@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/mainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=2]
@@ -23,6 +23,10 @@ size = 128
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=5]
+size = 64
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
 size = 64
 font_data = ExtResource( 2 )
 
@@ -94,9 +98,18 @@ bus = "Music"
 
 [node name="LightHolder" type="Node2D" parent="."]
 
+[node name="DEBUG_BUTTON" type="Button" parent="."]
+margin_left = 25.0
+margin_top = 21.0
+margin_right = 157.0
+margin_bottom = 79.0
+custom_fonts/font = SubResource( 6 )
+text = "DEBUG"
+
 [connection signal="pressed" from="buttonGroup/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="buttonGroup/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="buttonGroup/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]
 [connection signal="popup_hide" from="CreditsWindow" to="." method="_on_CreditsWindow_popup_hide"]
 [connection signal="popup_hide" from="OptionsWindow" to="." method="_on_OptionsWindow_popup_hide"]
+[connection signal="pressed" from="DEBUG_BUTTON" to="." method="_on_DEBUG_BUTTON_pressed"]

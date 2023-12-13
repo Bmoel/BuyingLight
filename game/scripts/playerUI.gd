@@ -14,6 +14,8 @@ Swap Hero: [color=#edc02d]Shift[/color]
 ----------------
 Total [color=#e6c829]G[/color]: """;
 
+signal playerMovedUI(newPosition);
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CanvasLayer/Information.bbcode_text = getInstructions();
@@ -37,4 +39,5 @@ func getInstructions() -> String:
 		return oneHeroInstructions;
 
 func _playerMoved(newPosition):
+	emit_signal("playerMovedUI", newPosition);
 	minimap.playerMoved(newPosition);

@@ -13,6 +13,9 @@ func setupGame() -> void:
 func subtractFromCurrentGold(goldToSubtract: int) -> void:
 	_currentGold -= goldToSubtract;
 
+func addToCurrentGold(goldToAdd: int) -> void:
+	_currentGold += goldToAdd;
+
 func addHeroToUnlocked(newHero: String) -> void:
 	if newHero in _heroesUnlocked:
 		return;

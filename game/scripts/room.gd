@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var player = $PlayerAndUI/Character;
+onready var enemySpawner = $EnemySpawner;
 
 const ROOM_LENGTH = 40000;
 const TOO_CLOSE_LENGTH = 400;
@@ -8,9 +9,13 @@ const RANDOMIZER_ATTEMPS = 10;
 
 var _exitPosition: Vector2 = Vector2.ZERO;
 
+signal playerMovedRoom(newPosition);
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize();
+	enemySpawner.connect("spawnEnemy", self, "_spawnEnemy");
+	$PlayerAndUI.connect("playerMovedUI", self, "_playerMoved");
 	player.position = generateRandomPosition();
 	var exitPosition: Vector2 = generateRandomPosition();
 	var attempts: int = 1;
@@ -20,6 +25,7 @@ func _ready():
 		if attempts > RANDOMIZER_ATTEMPS:
 			break;
 	setExitPosition(exitPosition);
+	enemySpawner.initiate();
 
 func exitIsTooCloseToPlayerStart(
 	exitPosition: Vector2, 
@@ -34,3 +40,11 @@ func generateRandomPosition() -> Vector2:
 
 func setExitPosition(newPosition: Vector2) -> void:
 	_exitPosition = newPosition;
+
+func _spawnEnemy(newEnemy):
+	newEnemy.position = generateRandomPosition();
+	newEnemy.setRoom(self);
+	add_child(newEnemy);
+
+func _playerMoved(newPosition) -> void:
+	emit_signal("playerMovedRoom", newPosition);

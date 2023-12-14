@@ -15,11 +15,13 @@ Swap Hero: [color=#edc02d]Shift[/color]
 Total [color=#e6c829]G[/color]: """;
 
 signal playerMovedUI(newPosition);
+signal boughtRevealUI();
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CanvasLayer/Information.bbcode_text = getInstructions();
 	character.connect("playerMoved", self, "_playerMoved");
+	shop.connect("boughtReveal", self, "_revealWasBought");
 
 func _process(_delta):
 	controlGoldCount();
@@ -38,6 +40,15 @@ func getInstructions() -> String:
 	else:
 		return oneHeroInstructions;
 
+func setMinimapPartitions(partition: int) -> void:
+	minimap.setPartitions(partition);
+
+func revealMinimapPartition(idx: int) -> void:
+	minimap.revealPartition(idx);
+
 func _playerMoved(newPosition):
 	emit_signal("playerMovedUI", newPosition);
 	minimap.playerMoved(newPosition);
+
+func _revealWasBought():
+	emit_signal("boughtRevealUI");

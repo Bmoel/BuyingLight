@@ -507,6 +507,7 @@ animations = [ {
 extents = Vector2( 60.25, 64 )
 
 [node name="Character" type="KinematicBody2D"]
+light_mask = 0
 position = Vector2( 960, 544 )
 collision_mask = 6
 script = ExtResource( 4 )

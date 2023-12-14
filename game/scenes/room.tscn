@@ -59,3 +59,5 @@ shape = SubResource( 4 )
 [node name="PlayerAndUI" parent="." instance=ExtResource( 2 )]
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
+
+[node name="LightHolder" type="Node2D" parent="."]

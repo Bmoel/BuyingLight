@@ -3,12 +3,15 @@ extends Node2D
 const REVEAL_COST = 4;
 const ROLL_COST = 2;
 
+signal boughtReveal();
+
 func canBuy(cost: int) -> bool:
 	return cost <= Global.getCurrentGold();
 
 func _on_Reveal_pressed():
 	if canBuy(REVEAL_COST):
 		Global.subtractFromCurrentGold(REVEAL_COST);
+		emit_signal("boughtReveal");
 	$ShopContainer/buttonHolder/Reveal.release_focus();
 
 func _on_Roll_pressed():

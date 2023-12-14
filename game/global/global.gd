@@ -4,6 +4,7 @@ extends Node
 var _currentGold: int = 0;
 var _numberHeroesUnlocked: int = 1;
 var _heroesUnlocked: Array = ["knight"];
+var _currentFloor: int = 1;
 #end region global variables
 
 ### region helper functions ###
@@ -40,4 +41,10 @@ func getHeroesUnlocked() -> Array:
 
 func setHeroesUnlocked(heroesArray: Array) -> void:
 	_heroesUnlocked = heroesArray;
+
+func getCurrentFloor() -> int:
+	return _currentFloor;
+
+func setCurrentFloor(newFloor: int):
+	_currentFloor = newFloor;
 ### end region getter/setter functions ###

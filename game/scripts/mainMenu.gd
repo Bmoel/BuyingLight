@@ -5,6 +5,8 @@ onready var lightHolder = $LightHolder;
 
 const GAME_PATH: String = "res://scenes/room.tscn";
 
+export var IS_DEBUG = false;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize();
@@ -20,6 +22,10 @@ func _ready():
 
 func _on_Play_pressed():
 	Global.setupGame();
+	## SETS DEBUG OPTIONS REMOVE FOR FINAL GAME
+	if IS_DEBUG:
+		setDubugOptions();
+	## END OF REMOVE DEBUG OPTIONS
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene(GAME_PATH);
 
@@ -84,6 +90,7 @@ func _on_CreditsWindow_popup_hide():
 func _on_OptionsWindow_popup_hide():
 	lightHolder.show();
 
-func _on_DEBUG_BUTTON_pressed():
+func setDubugOptions():
 	Global.setHeroesUnlocked(["knight", "shotgunner", "archer"]);
 	Global.setNumberHeroesUnlocked(3);
+	Global.setCurrentGold(5000);

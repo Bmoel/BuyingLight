@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/minimap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/playerUI.gd" type="Script" id=3]
 [ext_resource path="res://scenes/shopUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://scenes/healthAndCooldown.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -32,3 +33,6 @@ rect_min_size = Vector2( 200, 60 )
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 scroll_active = false
+
+[node name="HealthAndCooldown" parent="CanvasLayer" instance=ExtResource( 6 )]
+position = Vector2( 8, 960 )

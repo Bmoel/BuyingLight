@@ -20,7 +20,7 @@ const FRICTION = 500;
 const DASH_MULTIPLIER: int = 4;
 var ACCELERATION = 25000;
 var MAX_SPEED = 500;
-var DASH_COOLDOWN = 6;
+var DASH_COOLDOWN: float = 6.0;
 
 const MID_X: int = 960;
 const MID_Y: int = 540;
@@ -29,6 +29,7 @@ var velocity = Vector2.ZERO;
 var _dashCooldownAvalailable: bool = true;
 
 signal playerMoved(newPosition);
+signal playerDashed(cdTime);
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,10 +39,12 @@ func _ready():
 	knightSwordHitbox.disabled = true;
 
 func _input(_event):
+	if inAttackAnimation:
+		return;
 	if Input.is_action_just_pressed("change_character"):
 		currentCharacter = getNextCharacter(currentCharacter);
 		handleNextCharacterSpawn();
-	if Input.is_action_just_pressed("character_attack") and !inAttackAnimation:
+	if Input.is_action_just_pressed("character_attack"):
 		var pivotDir: int = getDirectionFromMouse();
 		knightHurtboxPivot.scale.x = pivotDir;
 		characterPivot.scale.x = pivotDir;
@@ -64,6 +67,7 @@ func _input(_event):
 		add_child(dashCooldownTimer);
 		dashTimer.start();
 		dashCooldownTimer.start();
+		emit_signal("playerDashed", DASH_COOLDOWN);
 
 var deltaTimer: float = 0;
 const DELTA_MAX: float = 0.5;

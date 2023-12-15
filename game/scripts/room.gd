@@ -3,6 +3,7 @@ extends Node2D
 onready var player = $PlayerAndUI/Character;
 onready var enemySpawner = $EnemySpawner;
 onready var ui = $PlayerAndUI;
+onready var shop = $PlayerAndUI/CanvasLayer/shop;
 
 const ROOM_LENGTH = 40000;
 const TOO_CLOSE_LENGTH = 400;
@@ -11,8 +12,9 @@ const RANDOMIZER_ATTEMPS = 10;
 var _exitPosition: Vector2 = Vector2.ZERO;
 var _roomLightArray: Array = [];
 var _roomLightTrackerArray: Array = [];
+var _exitIndexInLightArray: int = -1;
 
-var lightTexture = preload("res://assets/light.webp");
+var lightTexture = preload("res://assets/whiteBlock.png");
 
 signal playerMovedRoom(newPosition);
 
@@ -31,6 +33,7 @@ func _ready():
 	var roomExit = getRoomExit();
 	setExitPosition(roomExit);
 	setRoomLightArrays();
+	shop.setUIRarities();
 	enemySpawner.initiate();
 
 func setRoomLightArrays() -> void:
@@ -56,6 +59,13 @@ func setRoomLightArrays() -> void:
 			);
 			resultArr.append(light);
 			trackerArr.append(idx);
+			if exitIsInZone(
+				(multiplier*i),
+				(multiplier*(i+1)),
+				(multiplier*j),
+				(multiplier*(j+1))
+			):
+				_exitIndexInLightArray = idx;
 			idx += 1;
 	## Set Global variables
 	_roomLightArray = resultArr;
@@ -105,6 +115,15 @@ func turnLightOn(idx: int) -> void:
 	$LightHolder.add_child(lightObj);
 	ui.revealMinimapPartition(idx);
 
+func exitIsInZone(minX: float, maxX: float, minY: float, maxY: float) -> bool:
+	var xValid: bool = false;
+	var yValid: bool = false;
+	if _exitPosition.x >= minX and _exitPosition.x <= maxX:
+		xValid = true;
+	if _exitPosition.y >= minY and _exitPosition.y <= maxY:
+		yValid = true;
+	return xValid and yValid;
+
 func setExitPosition(newPosition: Vector2) -> void:
 	_exitPosition = newPosition;
 
@@ -116,7 +135,7 @@ func _spawnEnemy(newEnemy):
 func _playerMoved(newPosition) -> void:
 	emit_signal("playerMovedRoom", newPosition);
 
-func _boughtReveal() -> void:
+func _boughtReveal(cost) -> void:
 	var numLightsLeft = len(_roomLightTrackerArray);
 	if numLightsLeft <= 0:
 		return;
@@ -124,3 +143,6 @@ func _boughtReveal() -> void:
 	var lightIdx: int = _roomLightTrackerArray[randNum];
 	turnLightOn(lightIdx);
 	_roomLightTrackerArray.remove(randNum);
+	Global.subtractFromCurrentGold(cost);
+	if lightIdx == _exitIndexInLightArray:
+		print('EXIT FOUND!!!');

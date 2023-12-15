@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scripts/healthAndCooldown.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.984314, 0.282353, 0.282353, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="HealthAndCooldown" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Container" type="VBoxContainer" parent="."]
+margin_left = 5.0
+margin_right = 400.0
+margin_bottom = 200.0
+custom_constants/separation = 5
+
+[node name="DashCD" type="Label" parent="Container"]
+margin_right = 400.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 400, 52 )
+custom_fonts/font = SubResource( 1 )
+text = "Dash"
+
+[node name="Timer" type="Timer" parent="Container/DashCD"]
+one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="Container"]
+margin_top = 57.0
+margin_right = 400.0
+margin_bottom = 109.0
+rect_min_size = Vector2( 400, 52 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+value = 100.0
+percent_visible = false
+
+[connection signal="timeout" from="Container/DashCD/Timer" to="." method="_on_Timer_timeout"]

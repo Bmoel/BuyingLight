@@ -13,6 +13,11 @@ var _isLitArr: Array = [];
 var lighterTexture = preload("res://assets/minimapPlayer.png");
 var darkerTexture = preload("res://assets/minimapPlayerWhenLight.png");
 
+func resetMinimapDeps() -> void:
+	_clrRectArr = [];
+	_boundaryArr = [];
+	_isLitArr = [];
+
 func playerMoved(newLocation: Vector2):
 	var xPos = abs((newLocation.x / MAP_LENGTH) * MINIMAP_LENGTH);
 	var yPos = abs((newLocation.y / MAP_LENGTH) * MINIMAP_LENGTH);
@@ -34,6 +39,7 @@ func revealPartition(idx: int) -> void:
 		return;
 	_clrRectArr[idx].show();
 	_isLitArr[idx] = true;
+	
 
 func setPartitions(partition: int) -> void:
 	var rmLen = float(MINIMAP_LENGTH);
@@ -44,12 +50,11 @@ func setPartitions(partition: int) -> void:
 		for j in range(partition):
 			var clrRect = ColorRect.new();
 			clrRect.rect_size = Vector2(multiplier, multiplier);
-			clrRect.color = Color.white;
 			clrRect.rect_position = Vector2(
 				(multiplier*i), 
 				(multiplier*j)
 			);
-			clrRect.modulate = Color(255,255,255,225);
+			clrRect.color = Color(255,255,255,5);
 			$clrRectHolder.add_child(clrRect);
 			clrRect.hide();
 			clrArr.append(clrRect);

@@ -4,6 +4,7 @@ onready var character = $Character;
 onready var minimap = $CanvasLayer/minimap;
 onready var shop = $CanvasLayer/shop;
 onready var information = $CanvasLayer/Information;
+onready var helathAndCD = $CanvasLayer/HealthAndCooldown;
 
 const oneHeroInstructions: String = """Hide shop: [color=#03f0fc]Tab[/color]
 ----------------
@@ -15,13 +16,14 @@ Swap Hero: [color=#edc02d]Shift[/color]
 Total [color=#e6c829]G[/color]: """;
 
 signal playerMovedUI(newPosition);
-signal boughtRevealUI();
+signal boughtRevealUI(cost);
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CanvasLayer/Information.bbcode_text = getInstructions();
 	character.connect("playerMoved", self, "_playerMoved");
 	shop.connect("boughtReveal", self, "_revealWasBought");
+	character.connect("playerDashed", self, "_playerDashed");
 
 func _process(_delta):
 	controlGoldCount();
@@ -50,5 +52,8 @@ func _playerMoved(newPosition):
 	emit_signal("playerMovedUI", newPosition);
 	minimap.playerMoved(newPosition);
 
-func _revealWasBought():
-	emit_signal("boughtRevealUI");
+func _playerDashed(cdTime: float):
+	helathAndCD.startTimer(cdTime);
+
+func _revealWasBought(cost: int):
+	emit_signal("boughtRevealUI", cost);

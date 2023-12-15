@@ -4,6 +4,7 @@ onready var character = $Character;
 onready var minimap = $CanvasLayer/minimap;
 onready var shop = $CanvasLayer/shop;
 onready var information = $CanvasLayer/Information;
+onready var showShopInfo = $CanvasLayer/showShopInstr;
 onready var helathAndCD = $CanvasLayer/HealthAndCooldown;
 
 const oneHeroInstructions: String = """Hide shop: [color=#03f0fc]Tab[/color]
@@ -32,6 +33,7 @@ func _input(_event):
 	if Input.is_action_just_pressed("ui_focus_next"):
 		shop.visible = !shop.visible;
 		information.visible = !information.visible;
+		showShopInfo.visible = !showShopInfo.visible;
 
 func controlGoldCount() -> void:
 	$CanvasLayer/Information.bbcode_text = getInstructions() + str(Global.getCurrentGold());

@@ -25,6 +25,7 @@ func _ready():
 	character.connect("playerMoved", self, "_playerMoved");
 	shop.connect("boughtReveal", self, "_revealWasBought");
 	character.connect("playerDashed", self, "_playerDashed");
+	character.connect("playerTookDamage", self, "_playerTookDmg");
 
 func _process(_delta):
 	controlGoldCount();
@@ -50,12 +51,15 @@ func setMinimapPartitions(partition: int) -> void:
 func revealMinimapPartition(idx: int) -> void:
 	minimap.revealPartition(idx);
 
-func _playerMoved(newPosition):
+func _playerMoved(newPosition) -> void:
 	emit_signal("playerMovedUI", newPosition);
 	minimap.playerMoved(newPosition);
 
-func _playerDashed(cdTime: float):
+func _playerDashed(cdTime: float) -> void:
 	helathAndCD.startTimer(cdTime);
 
-func _revealWasBought(cost: int):
+func _revealWasBought(cost: int) -> void:
 	emit_signal("boughtRevealUI", cost);
+
+func _playerTookDmg(dmg: int) -> void:
+	helathAndCD.handleDamageTaken(dmg);

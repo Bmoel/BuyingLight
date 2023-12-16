@@ -18,6 +18,10 @@ func resetMinimapDeps() -> void:
 	_boundaryArr = [];
 	_isLitArr = [];
 
+func resetExit() -> void:
+	exitLocationSprite.hide();
+	exitLocationSprite.position = Vector2.ZERO;
+
 func playerMoved(newLocation: Vector2):
 	var xPos = abs((newLocation.x / MAP_LENGTH) * MINIMAP_LENGTH);
 	var yPos = abs((newLocation.y / MAP_LENGTH) * MINIMAP_LENGTH);
@@ -30,16 +34,11 @@ func exitFound(location: Vector2):
 	var yPos = abs((location.y / MAP_LENGTH) * MINIMAP_LENGTH);
 	exitLocationSprite.position = Vector2(xPos, yPos);
 
-func resetExit() -> void:
-	exitLocationSprite.hide();
-	exitLocationSprite.position = Vector2.ZERO;
-
 func revealPartition(idx: int) -> void:
 	if idx > len(_clrRectArr):
 		return;
 	_clrRectArr[idx].show();
 	_isLitArr[idx] = true;
-	
 
 func setPartitions(partition: int) -> void:
 	var rmLen = float(MINIMAP_LENGTH);

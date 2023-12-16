@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://assets/Knight_player/Idle_KG_2.png" type="Texture" id=1]
 [ext_resource path="res://assets/Knight_player/Dying_KG_2.png" type="Texture" id=2]
@@ -14,7 +14,7 @@
 [ext_resource path="res://assets/light.webp" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20.5, 52.5 )
+extents = Vector2( 16, 40 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
@@ -171,35 +171,35 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 300, 0, 100, 64 )
 
-[sub_resource type="AtlasTexture" id=81]
+[sub_resource type="AtlasTexture" id=96]
 flags = 4
 atlas = ExtResource( 10 )
-region = Rect2( 0, 0, 100, 64 )
+region = Rect2( 0, 0, 99, 64 )
 
-[sub_resource type="AtlasTexture" id=82]
+[sub_resource type="AtlasTexture" id=97]
 flags = 4
 atlas = ExtResource( 10 )
-region = Rect2( 100, 0, 100, 64 )
+region = Rect2( 100, 0, 99, 64 )
 
-[sub_resource type="AtlasTexture" id=83]
+[sub_resource type="AtlasTexture" id=98]
 flags = 4
 atlas = ExtResource( 10 )
-region = Rect2( 200, 0, 100, 64 )
+region = Rect2( 200, 0, 99, 64 )
 
-[sub_resource type="AtlasTexture" id=84]
+[sub_resource type="AtlasTexture" id=99]
 flags = 4
 atlas = ExtResource( 10 )
-region = Rect2( 300, 0, 100, 64 )
+region = Rect2( 300, 0, 99, 64 )
 
-[sub_resource type="AtlasTexture" id=85]
+[sub_resource type="AtlasTexture" id=100]
 flags = 4
 atlas = ExtResource( 10 )
-region = Rect2( 400, 0, 100, 64 )
+region = Rect2( 400, 0, 99, 64 )
 
-[sub_resource type="AtlasTexture" id=86]
+[sub_resource type="AtlasTexture" id=101]
 flags = 4
 atlas = ExtResource( 10 )
-region = Rect2( 500, 0, 100, 64 )
+region = Rect2( 500, 0, 99, 64 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
@@ -251,37 +251,37 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 300, 0, 100, 64 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=89]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 100, 64 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=90]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 100, 0, 100, 64 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=91]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 200, 0, 100, 64 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=92]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 300, 0, 100, 64 )
 
-[sub_resource type="AtlasTexture" id=21]
+[sub_resource type="AtlasTexture" id=93]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 400, 0, 100, 64 )
 
-[sub_resource type="AtlasTexture" id=22]
+[sub_resource type="AtlasTexture" id=94]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 500, 0, 100, 64 )
 
-[sub_resource type="AtlasTexture" id=23]
+[sub_resource type="AtlasTexture" id=95]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 600, 0, 100, 64 )
@@ -463,7 +463,7 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 81 ), SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), SubResource( 86 ) ],
+"frames": [ SubResource( 96 ), SubResource( 97 ), SubResource( 98 ), SubResource( 99 ), SubResource( 100 ), SubResource( 101 ) ],
 "loop": true,
 "name": "knight_attack",
 "speed": 5.0
@@ -478,7 +478,7 @@ animations = [ {
 "name": "knight_idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"frames": [ SubResource( 89 ), SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ) ],
 "loop": true,
 "name": "knight_move",
 "speed": 5.0
@@ -505,7 +505,13 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=87]
-extents = Vector2( 60.25, 64 )
+extents = Vector2( 68.25, 64 )
+
+[sub_resource type="CircleShape2D" id=88]
+radius = 160.2
+
+[sub_resource type="RectangleShape2D" id=102]
+extents = Vector2( 22.5, 46.5 )
 
 [node name="Character" type="KinematicBody2D"]
 light_mask = 0
@@ -513,8 +519,8 @@ position = Vector2( 960, 544 )
 collision_mask = 6
 script = ExtResource( 4 )
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2( -0.5, 3.5 )
+[node name="collisionBox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8 )
 shape = SubResource( 1 )
 
 [node name="Pivot" type="Position2D" parent="."]
@@ -532,11 +538,12 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnightHurtboxPivot/knight"]
-position = Vector2( 22.75, 39 )
+position = Vector2( 30.75, 39 )
 shape = SubResource( 87 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+smoothing_speed = 100.0
 
 [node name="AtkIndicator" type="Position2D" parent="."]
 
@@ -547,6 +554,27 @@ texture = ExtResource( 11 )
 
 [node name="characterLight" type="Light2D" parent="."]
 texture = ExtResource( 12 )
+texture_scale = 1.6
 energy = 1.45
 
+[node name="lightArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lightArea"]
+shape = SubResource( 88 )
+
+[node name="takeDamageArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="takeDamageArea"]
+position = Vector2( 0, 8 )
+shape = SubResource( 102 )
+
 [connection signal="body_entered" from="KnightHurtboxPivot/knight" to="." method="_on_knight_body_entered"]
+[connection signal="body_entered" from="lightArea" to="." method="_on_lightArea_body_entered"]
+[connection signal="body_exited" from="lightArea" to="." method="_on_lightArea_body_exited"]
+[connection signal="body_entered" from="takeDamageArea" to="." method="_on_takeDamageArea_body_entered"]

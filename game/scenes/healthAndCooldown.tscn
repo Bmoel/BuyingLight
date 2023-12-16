@@ -42,7 +42,7 @@ text = "Dash"
 [node name="Timer" type="Timer" parent="Container/DashCD"]
 one_shot = true
 
-[node name="ProgressBar" type="ProgressBar" parent="Container"]
+[node name="healthBar" type="ProgressBar" parent="Container"]
 margin_top = 57.0
 margin_right = 400.0
 margin_bottom = 109.0

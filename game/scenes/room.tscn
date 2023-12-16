@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/room.gd" type="Script" id=1]
 [ext_resource path="res://scenes/playerUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Exit.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 19966, 714 )
@@ -61,3 +62,6 @@ shape = SubResource( 4 )
 [node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
 
 [node name="LightHolder" type="Node2D" parent="."]
+
+[node name="Exit" parent="." instance=ExtResource( 4 )]
+visible = false

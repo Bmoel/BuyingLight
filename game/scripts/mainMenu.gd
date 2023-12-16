@@ -3,8 +3,6 @@ extends Node2D
 onready var exitButton = $Exit;
 onready var lightHolder = $LightHolder;
 
-const GAME_PATH: String = "res://scenes/room.tscn";
-
 export var IS_DEBUG = false;
 
 # Called when the node enters the scene tree for the first time.
@@ -27,7 +25,7 @@ func _on_Play_pressed():
 		setDubugOptions();
 	## END OF REMOVE DEBUG OPTIONS
 	# warning-ignore:return_value_discarded
-	get_tree().change_scene(GAME_PATH);
+	get_tree().change_scene(Global.ROOM_PATH);
 
 func _on_Options_pressed():
 	lightHolder.hide();

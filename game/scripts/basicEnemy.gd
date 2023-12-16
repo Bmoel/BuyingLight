@@ -5,6 +5,7 @@ var _obfuscatedPosition: Vector2 = Vector2.ZERO;
 var _justHit: int = 4;
 var _isDead: bool = false;
 var _goldAmount = 1;
+var _damageToDeal: int = 5;
 
 var velocity: Vector2 = Vector2.ZERO;
 var baseSpeed:int = 250;
@@ -12,15 +13,17 @@ var baseHealth:int = 10;
 
 var room = null;
 
+var blinkTmr: float = 0.0;
+var obfuscaterTimer: float = TIME_BTWN_OBFUSCATING;
+
 const NUM_BLINKS: int = 4;
 const TIME_BTWN_BLINKS: float = 0.25;
 const TIME_BTWN_OBFUSCATING: float = 1.5;
 
 func _ready():
 	randomize();
+	$AnimatedSprite.play("default");
 
-var blinkTmr: float = 0.0;
-var obfuscaterTimer: float = TIME_BTWN_OBFUSCATING;
 func _process(delta):
 	if room == null:
 		return;
@@ -54,6 +57,12 @@ func takeDamage(dmgAmount: int) -> void:
 		Global.addToCurrentGold(_goldAmount);
 		return;
 	_justHit = 0;
+
+func getDamageAmount() -> int:
+	return _damageToDeal;
+
+func death() -> void:
+	queue_free();
 
 func _playerMoved(newPosition) -> void:
 	_playerPosition = newPosition;

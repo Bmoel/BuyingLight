@@ -16,8 +16,8 @@ extends Node
 #################
 
 enum Odds {
-	UNCOMMON,
 	COMMON,
+	UNCOMMON,
 	RARE,
 	EPIC,
 	LEGENDARY
@@ -25,29 +25,29 @@ enum Odds {
 
 var traitChancesPerRoom: Array = [
 	{
-		Odds.UNCOMMON: 80,
-		Odds.COMMON: 15,
+		Odds.COMMON: 80,
+		Odds.UNCOMMON: 15,
 		Odds.RARE: 5,
 		Odds.EPIC: 0,
 		Odds.LEGENDARY: 0
 	},
 	{
-		Odds.UNCOMMON: 60,
-		Odds.COMMON: 30,
+		Odds.COMMON: 60,
+		Odds.UNCOMMON: 30,
 		Odds.RARE: 10,
 		Odds.EPIC: 0,
 		Odds.LEGENDARY: 0
 	},
 	{
-		Odds.UNCOMMON: 50,
-		Odds.COMMON: 35,
+		Odds.COMMON: 50,
+		Odds.UNCOMMON: 35,
 		Odds.RARE: 10,
 		Odds.EPIC: 5,
 		Odds.LEGENDARY: 0
 	},
 	{
-		Odds.UNCOMMON: 40,
-		Odds.COMMON: 35,
+		Odds.COMMON: 40,
+		Odds.UNCOMMON: 35,
 		Odds.RARE: 15,
 		Odds.EPIC: 8,
 		Odds.LEGENDARY: 2
@@ -101,8 +101,8 @@ func getShopOdds(roomNum: int) -> Dictionary:
 
 func getTraits(rarity: int) -> Dictionary:
 	match rarity:
-		Odds.UNCOMMON: return uncommonTraits;
-		Odds.COMMON: return commonTraits;
+		Odds.COMMON: return uncommonTraits;
+		Odds.UNCOMMON: return commonTraits;
 		Odds.RARE: return rareTraits;
 		Odds.EPIC: return epicTraits;
 		Odds.LEGENDARY: return legendaryTraits;
@@ -110,17 +110,17 @@ func getTraits(rarity: int) -> Dictionary:
 
 func getRarityText(rarity: int) -> String:
 	match rarity:
-		Odds.UNCOMMON: return "Uncommon";
 		Odds.COMMON: return "Common";
+		Odds.UNCOMMON: return "Uncommon";
 		Odds.RARE: return "Rare";
 		Odds.EPIC: return "Epic";
-		Odds.LEGENDARY: return "Epic";
+		Odds.LEGENDARY: return "Legendary";
 		_: return "";
 
 func getRarityColor(rarity: int) -> String:
 	match rarity:
-		Odds.UNCOMMON: return "#c1c1c1";
-		Odds.COMMON: return "#6abe30";
+		Odds.COMMON: return "#c1c1c1";
+		Odds.UNCOMMON: return "#6abe30";
 		Odds.RARE: return "#639bff";
 		Odds.EPIC: return "#924bae";
 		Odds.LEGENDARY: return "#ece54b";

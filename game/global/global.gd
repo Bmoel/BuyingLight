@@ -1,11 +1,18 @@
 extends Node
 
+### region global constants ###
+const ROOM_PATH: String = "res://scenes/room.tscn";
+### end region global constants ###
+
 ### region global variables ###
 var _currentGold: int = 0;
 var _numberHeroesUnlocked: int = 1;
 var _heroesUnlocked: Array = ["knight"];
 var _currentFloor: int = 1;
-#end region global variables
+### end region global variables ###
+
+# warning-ignore:unused_signal
+signal blinkEnemyLightHandler(enemyId, didEnter);
 
 ### region helper functions ###
 func setupGame() -> void:
@@ -21,6 +28,19 @@ func addHeroToUnlocked(newHero: String) -> void:
 	if newHero in _heroesUnlocked:
 		return;
 	_heroesUnlocked.append(newHero);
+
+func incrementCurrentFloor() -> void:
+	_currentFloor += 1;
+
+func getRoomPartitions() -> int:
+	match(_currentFloor):
+		1: return 4;
+		2: return 4;
+		3: return 6;
+		4: return 6;
+		5: return 8;
+		6: return 8;
+		_: return 10;
 ### end region helper functions ###
 
 ### region getter/setter functions ###

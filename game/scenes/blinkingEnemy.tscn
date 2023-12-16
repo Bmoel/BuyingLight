@@ -1,0 +1,80 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/enemyHit.wav" type="AudioStream" id=1]
+[ext_resource path="res://scripts/blinkingEnemy.gd" type="Script" id=2]
+[ext_resource path="res://assets/light.webp" type="Texture" id=3]
+[ext_resource path="res://assets/enemies.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 16, 429, 32, 39 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 48, 429, 32, 39 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 80, 429, 32, 39 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 112, 429, 32, 39 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 144, 429, 32, 39 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 176, 429, 32, 39 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 208, 429, 32, 39 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 240, 429, 32, 39 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 7.5, 12 )
+
+[node name="BlinkingEnemy" type="KinematicBody2D"]
+scale = Vector2( 4, 4 )
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 0
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 1 )
+shape = SubResource( 10 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 0.5
+
+[node name="enemyHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+
+[connection signal="finished" from="enemyHit" to="." method="_on_enemyHit_finished"]

@@ -19,7 +19,7 @@ var inAttackAnimation: bool = false;
 const FRICTION = 500;
 const DASH_MULTIPLIER: int = 4;
 var ACCELERATION = 25000;
-var MAX_SPEED = 500;
+var MAX_SPEED = 2500;
 var DASH_COOLDOWN: float = 6.0;
 
 const MID_X: int = 960;
@@ -30,6 +30,7 @@ var _dashCooldownAvalailable: bool = true;
 
 signal playerMoved(newPosition);
 signal playerDashed(cdTime);
+signal playerTookDamage(dmg);
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -68,6 +69,7 @@ func _input(_event):
 		dashTimer.start();
 		dashCooldownTimer.start();
 		emit_signal("playerDashed", DASH_COOLDOWN);
+		$Camera2D.smoothing_enabled = true;
 
 var deltaTimer: float = 0;
 const DELTA_MAX: float = 0.5;
@@ -93,7 +95,6 @@ func _physics_process(delta):
 		velocity = input_velocity.move_toward(0.7*input_velocity*MAX_SPEED, ACCELERATION*delta);
 	
 	velocity = move_and_slide(velocity);
-	
 	#Atk indicator direction for player
 	var timeToBlink: bool = false;
 	deltaTimer += delta;
@@ -102,7 +103,6 @@ func _physics_process(delta):
 		timeToBlink = true;
 	handleAtkIndicator(timeToBlink);
 	#end region Atk indicator
-
 	knightHurtboxPivot.scale.x = getDirectionFromMouse();
 	controlAnimations(velocity);
 
@@ -192,7 +192,23 @@ func _on_dashSpeedTimer_timeout(speedTimer: Timer) -> void:
 	MAX_SPEED /= DASH_MULTIPLIER;
 	ACCELERATION /= DASH_MULTIPLIER;
 	speedTimer.queue_free();
+	$Camera2D.smoothing_enabled = false;
 
 func _on_dashCooldownTimer_timeout(cooldownTimer: Timer) -> void:
 	_dashCooldownAvalailable = true;
 	cooldownTimer.queue_free();
+
+func _on_lightArea_body_entered(body):
+	if body.has_method("get_instance_id"):
+		Global.emit_signal("blinkEnemyLightHandler", body.get_instance_id(), true);
+
+func _on_lightArea_body_exited(body):
+	if body.has_method("get_instance_id"):
+		Global.emit_signal("blinkEnemyLightHandler", body.get_instance_id(), false);
+
+func _on_takeDamageArea_body_entered(body):
+	if body.has_method("getDamageAmount"):
+		var dmgToTake: int = body.getDamageAmount();
+		emit_signal("playerTookDamage", dmgToTake);
+	if body.has_method("death"):
+		body.death();

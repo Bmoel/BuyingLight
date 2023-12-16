@@ -16,6 +16,7 @@ run/main_scene="res://scenes/mainMenu.tscn"
 [autoload]
 
 Global="*res://global/global.gd"
+CharacterUpgrades="*res://global/characterUpgrades.gd"
 
 [display]
 

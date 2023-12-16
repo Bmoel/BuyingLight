@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/mainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scenes/creditsWindow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Options.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Boardwalk-Arcade-2.mp3" type="AudioStream" id=5]
+[ext_resource path="res://assets/konamiSound.wav" type="AudioStream" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 264
@@ -56,6 +57,7 @@ custom_constants/separation = 20
 margin_right = 600.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 0, 150 )
+focus_neighbour_top = NodePath("../Credits")
 custom_fonts/font = SubResource( 2 )
 text = "Play"
 
@@ -72,6 +74,7 @@ margin_top = 340.0
 margin_right = 600.0
 margin_bottom = 490.0
 rect_min_size = Vector2( 0, 150 )
+focus_neighbour_bottom = NodePath("../Play")
 custom_fonts/font = SubResource( 4 )
 text = "Credits"
 
@@ -81,6 +84,7 @@ margin_top = 1008.0
 margin_right = 163.0
 margin_bottom = 1068.0
 rect_min_size = Vector2( 100, 50 )
+focus_neighbour_right = NodePath("../buttonGroup/Play")
 custom_fonts/font = SubResource( 5 )
 text = "Exit"
 
@@ -88,11 +92,16 @@ text = "Exit"
 
 [node name="OptionsWindow" parent="." instance=ExtResource( 4 )]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="bgMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -15.0
 autoplay = true
 bus = "Music"
+
+[node name="konamiSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -15.0
+bus = "SFX"
 
 [node name="LightHolder" type="Node2D" parent="."]
 

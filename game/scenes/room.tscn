@@ -65,3 +65,5 @@ shape = SubResource( 4 )
 
 [node name="Exit" parent="." instance=ExtResource( 4 )]
 visible = false
+
+[node name="EnemyHolder" type="Node2D" parent="."]

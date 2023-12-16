@@ -13,8 +13,10 @@ const REVEAL_COST = 4;
 const ROLL_COST = 2;
 const NUM_UPGRADES = 4;
 const NUM_ODDS = 5;
+const UPGRADE_IDX = 2;
 
 var upgradeCosts: Array = [];
+var upgradeDetails: Array = [];
 
 var Traits = null;
 
@@ -73,12 +75,14 @@ func setUpgrades() -> void:
 	#################################################
 	var buttonIdx: int = 0;
 	upgradeCosts.clear();
+	upgradeDetails.clear();
 	for button in buttons.get_children():
 		var buttonData = upgradeData[buttonIdx];
 		var rarity = buttonData[0];
 		var goldBox: RichTextLabel = button.get_child(1);
 		goldBox.bbcode_text = str(rarity+1) + "[color=#e6c829]G[/color]";
 		upgradeCosts.append(rarity+1);
+		upgradeDetails.append(upgradeData[buttonIdx][2]);
 		var descBox: RichTextLabel = button.get_child(0);
 		descBox.bbcode_text = getButtonText(rarity, buttonData[1], buttonData[2]);
 		buttonIdx += 1;
@@ -112,8 +116,9 @@ func _on_upgrade1_pressed():
 	if !canBuy(cost): return;
 	upgrade1Button.disabled = true;
 	upgrade1Button.mouse_filter = Button.MOUSE_FILTER_IGNORE;
-	var backsplash = upgrade1Button.get_child(2);
+	var backsplash = upgrade1Button.get_child(UPGRADE_IDX);
 	backsplash.show();
+	CharacterUpgrades.applyUpgrade(getUpgradeDetails(0));
 
 func _on_upgrade2_pressed():
 	upgrade2Button.release_focus();
@@ -121,8 +126,9 @@ func _on_upgrade2_pressed():
 	if !canBuy(cost): return;
 	upgrade2Button.disabled = true;
 	upgrade2Button.mouse_filter = Button.MOUSE_FILTER_IGNORE;
-	var backsplash = upgrade2Button.get_child(2);
+	var backsplash = upgrade2Button.get_child(UPGRADE_IDX);
 	backsplash.show();
+	CharacterUpgrades.applyUpgrade(getUpgradeDetails(1));
 
 func _on_upgrade3_pressed():
 	upgrade3Button.release_focus();
@@ -130,8 +136,9 @@ func _on_upgrade3_pressed():
 	if !canBuy(cost): return;
 	upgrade3Button.disabled = true;
 	upgrade3Button.mouse_filter = Button.MOUSE_FILTER_IGNORE;
-	var backsplash = upgrade3Button.get_child(2);
+	var backsplash = upgrade3Button.get_child(UPGRADE_IDX);
 	backsplash.show();
+	CharacterUpgrades.applyUpgrade(getUpgradeDetails(3));
 
 func _on_upgrade4_pressed():
 	upgrade4Button.release_focus();
@@ -139,10 +146,16 @@ func _on_upgrade4_pressed():
 	if !canBuy(cost): return;
 	upgrade4Button.disabled = true;
 	upgrade4Button.mouse_filter = Button.MOUSE_FILTER_IGNORE;
-	var backsplash = upgrade4Button.get_child(2);
+	var backsplash = upgrade4Button.get_child(UPGRADE_IDX);
 	backsplash.show();
+	CharacterUpgrades.applyUpgrade(getUpgradeDetails(3));
 
 func getUpgradeCost(buttonIdx: int) -> int:
 	if buttonIdx >= len(upgradeCosts) || buttonIdx < 0:
 		return 1;
 	return upgradeCosts[buttonIdx];
+
+func getUpgradeDetails(buttonIdx: int) -> Array:
+	if buttonIdx >= len(upgradeCosts) || buttonIdx < 0:
+		return [];
+	return upgradeDetails[buttonIdx];

@@ -5,7 +5,7 @@ onready var minimap = $CanvasLayer/minimap;
 onready var shop = $CanvasLayer/shop;
 onready var information = $CanvasLayer/Information;
 onready var showShopInfo = $CanvasLayer/showShopInstr;
-onready var helathAndCD = $CanvasLayer/HealthAndCooldown;
+onready var healthAndCD = $CanvasLayer/HealthAndCooldown;
 
 const oneHeroInstructions: String = """Hide shop: [color=#03f0fc]Tab[/color]
 ----------------
@@ -26,6 +26,7 @@ func _ready():
 	shop.connect("boughtReveal", self, "_revealWasBought");
 	character.connect("playerDashed", self, "_playerDashed");
 	character.connect("playerTookDamage", self, "_playerTookDmg");
+	healthAndCD.connect("playerDied", self, "_playerIsDead");
 
 func _process(_delta):
 	controlGoldCount();
@@ -40,10 +41,11 @@ func controlGoldCount() -> void:
 	$CanvasLayer/Information.bbcode_text = getInstructions() + str(Global.getCurrentGold());
 
 func getInstructions() -> String:
-	if (Global.getNumberHeroesUnlocked() > 1):
-		return twoHeroInstructions;
-	else:
-		return oneHeroInstructions;
+	return oneHeroInstructions;
+#	if (Global.getNumberHeroesUnlocked() > 1):
+#		return twoHeroInstructions;
+#	else:
+#		return oneHeroInstructions;
 
 func setMinimapPartitions(partition: int) -> void:
 	minimap.setPartitions(partition);
@@ -56,10 +58,13 @@ func _playerMoved(newPosition) -> void:
 	minimap.playerMoved(newPosition);
 
 func _playerDashed(cdTime: float) -> void:
-	helathAndCD.startTimer(cdTime);
+	healthAndCD.startTimer(cdTime);
 
 func _revealWasBought(cost: int) -> void:
 	emit_signal("boughtRevealUI", cost);
 
 func _playerTookDmg(dmg: int) -> void:
-	helathAndCD.handleDamageTaken(dmg);
+	healthAndCD.handleDamageTaken(dmg);
+
+func _playerIsDead() -> void:
+	character.gameOver();

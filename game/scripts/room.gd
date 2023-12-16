@@ -31,6 +31,8 @@ func _ready():
 	$PlayerAndUI.connect("playerMovedUI", self, "_playerMoved");
 	# warning-ignore:return_value_discarded
 	$Exit.connect("playerExited", self, "_handleExit");
+	# warning-ignore:return_value_discarded
+	CharacterUpgrades.connect("wipeEnemies", self, "_wipeAllEnemies");
 	## END CONNECTIONS ##
 	player.position = generateRandomPosition();
 	var roomExit = getRoomExit();
@@ -146,7 +148,7 @@ func validCoordinateNumber(value: int) -> bool:
 func _spawnEnemy(newEnemy):
 	newEnemy.position = getPositionClosishToPlayer();
 	newEnemy.setRoom(self);
-	add_child(newEnemy);
+	$EnemyHolder.add_child(newEnemy);
 	if newEnemy.has_method("setLightTrackerArray"):
 		newEnemy.setLightTrackerArray(_roomLightTrackerArray);
 
@@ -166,6 +168,10 @@ func _boughtReveal(cost) -> void:
 	if lightIdx == _exitIndexInLightArray:
 		$Exit.show();
 		$PlayerAndUI/CanvasLayer/minimap.exitFound(_exitPosition);
+
+func _wipeAllEnemies() -> void:
+	for enemy in $EnemyHolder.get_children():
+		enemy.queue_free();
 
 func _handleExit() -> void:
 	Global.incrementCurrentFloor();

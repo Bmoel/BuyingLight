@@ -1,19 +1,13 @@
 extends Node
 
-###Trait Array Meaning###
-#[type, value]
-#########################
-
-###Trait Types###
-#1: Atk up
-#2: Def up
-#3: Regen health
-#4: Speed up
-#5: Invulnerability
-#6: Unlock Archer
-#7: Unlock Shotgunner
-#8: Wipe Out All Enemies 
-#################
+enum Types {
+	ATK,
+	DEF,
+	REGEN,
+	SPEED,
+	INVULNERABLE,
+	WIPE
+}
 
 enum Odds {
 	COMMON,
@@ -54,43 +48,44 @@ var traitChancesPerRoom: Array = [
 	},
 ]
 
+#Trait Array Meanings: [type, value]
+
 const commonTraits: Dictionary = {
-	"Attack Up": [1, 5],
-	"Defense Up": [2, 5],
-	"Regen Health": [3,5],
-	"Speed Up": [4,5],
+	"Attack Up": [Types.ATK, 5],
+	"Defense Up": [Types.DEF, 5],
+	"Regen Health": [Types.REGEN, 5],
+	"Speed Up": [Types.SPEED, 5],
+	"Wipe test": [Types.WIPE, 1]
 }
 
 const uncommonTraits: Dictionary = {
-	"Attack Up": [1, 10],
-	"Defense Up": [2, 10],
-	"Regen Health": [3, 10],
-	"Speed Up": [4, 10],
+	"Attack Up": [Types.ATK, 10],
+	"Defense Up": [Types.DEF, 10],
+	"Regen Health": [Types.REGEN, 10],
+	"Speed Up": [Types.SPEED, 10],
 }
 
 const rareTraits: Dictionary = {
-	"Attack Up": [1, 15],
-	"Defense Up": [2, 15],
-	"Regen Health": [3, 15],
-	"Speed Up": [4, 15],
+	"Attack Up": [Types.ATK, 15],
+	"Defense Up": [Types.DEF, 15],
+	"Regen Health": [Types.REGEN, 15],
+	"Speed Up": [Types.SPEED, 15],
 	"One Hit Invulnerability": [5, 1],
-	"Unlock Archer Hero": [6, 1],
 }
 
 const epicTraits: Dictionary = {
-	"Attack Up": [1, 20],
-	"Defense Up": [2, 20],
-	"Regen Health": [3, 20],
-	"Speed Up": [4, 20],
-	"Unlock Shotgunner Hero": [7, 1]
+	"Attack Up": [Types.ATK, 20],
+	"Defense Up": [Types.DEF, 20],
+	"Regen Health": [Types.REGEN, 20],
+	"Speed Up": [Types.SPEED, 20],
 }
 
 const legendaryTraits: Dictionary = {
-	"Attack Up": [1, 25],
-	"Defense Up": [2, 25],
-	"Regen Health": [3, 25],
-	"Speed Up": [4, 25],
-	"Wipe Out All Enemies": [8, 1]
+	"Attack Up": [Types.ATK, 25],
+	"Defense Up": [Types.DEF, 25],
+	"Regen Health": [Types.REGEN, 25],
+	"Speed Up": [Types.SPEED, 25],
+	"Wipe Out All Enemies": [Types.WIPE, 1]
 }
 
 func getShopOdds(roomNum: int) -> Dictionary:
@@ -101,8 +96,8 @@ func getShopOdds(roomNum: int) -> Dictionary:
 
 func getTraits(rarity: int) -> Dictionary:
 	match rarity:
-		Odds.COMMON: return uncommonTraits;
-		Odds.UNCOMMON: return commonTraits;
+		Odds.COMMON: return commonTraits;
+		Odds.UNCOMMON: return uncommonTraits;
 		Odds.RARE: return rareTraits;
 		Odds.EPIC: return epicTraits;
 		Odds.LEGENDARY: return legendaryTraits;

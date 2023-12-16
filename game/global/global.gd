@@ -9,6 +9,7 @@ var _currentGold: int = 0;
 var _numberHeroesUnlocked: int = 1;
 var _heroesUnlocked: Array = ["knight"];
 var _currentFloor: int = 1;
+var _hasKonamiCheats: bool = false;
 ### end region global variables ###
 
 # warning-ignore:unused_signal
@@ -16,7 +17,10 @@ signal blinkEnemyLightHandler(enemyId, didEnter);
 
 ### region helper functions ###
 func setupGame() -> void:
-	_currentGold = 10;
+	_currentGold = 10 if (!_hasKonamiCheats) else 5000;
+	_numberHeroesUnlocked = 1;
+	_heroesUnlocked = ["knight"];
+	_currentFloor = 1;
 
 func subtractFromCurrentGold(goldToSubtract: int) -> void:
 	_currentGold -= goldToSubtract;
@@ -67,4 +71,10 @@ func getCurrentFloor() -> int:
 
 func setCurrentFloor(newFloor: int):
 	_currentFloor = newFloor;
+
+func getKonamiValue() -> bool:
+	return _hasKonamiCheats;
+
+func setKonamiValue(value: bool):
+	_hasKonamiCheats = value;
 ### end region getter/setter functions ###

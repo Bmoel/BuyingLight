@@ -6,11 +6,11 @@ var _isDead: bool = false;
 var _goldAmount = 3;
 var _isInPlayerLight: bool = false;
 var _isInRoomLight: bool = false;
-var _damageToDeal: int = 10;
+var _damageToDeal: int = 15;
 var _roomLightTrackerArray = [];
 
 var velocity: Vector2 = Vector2.ZERO;
-var baseSpeed:int = 200;
+var baseSpeed:int = 250;
 var baseHealth:int = 20;
 
 var room = null;
@@ -40,8 +40,8 @@ func _process(delta):
 	obfuscaterTimer += delta;
 	if obfuscaterTimer >= TIME_BTWN_OBFUSCATING:
 		_obfuscatedPosition = _playerPosition + Vector2(
-			_playerPosition.x + rand_range(-300.0, 300.0),
-			_playerPosition.y + rand_range(-300.0, 300.0)
+			_playerPosition.x + rand_range(-500.0, 500.0),
+			_playerPosition.y + rand_range(-500.0, 500.0)
 		);
 		obfuscaterTimer = 0.0;
 	velocity = position.direction_to(_playerPosition) * baseSpeed;
@@ -64,7 +64,11 @@ func _process(delta):
 					if _isInRoomLight: break;
 				idx += 1;
 			if _isInRoomLight: break;
+	else:
+		_isInRoomLight = true;
 	##############################################################
+	if _isInRoomLight || _isInPlayerLight:
+		$AnimatedSprite.visible = true;
 
 func validRangeForCurrentPosition(
 	minimum: float, 
@@ -104,6 +108,9 @@ func _on_enemyHit_finished():
 		queue_free();
 
 func _flickerLight() -> void:
+	if _isInRoomLight and !$AnimatedSprite.visible:
+		$AnimatedSprite.visible = true;
+		return;
 	if _isInPlayerLight || _isInRoomLight:
 		return;
 	$Light2D.visible = !$Light2D.visible;

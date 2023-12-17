@@ -68,3 +68,9 @@ func _playerTookDmg(dmg: int) -> void:
 
 func _playerIsDead() -> void:
 	character.gameOver();
+
+func _handleInstructions(visibleValue: bool) -> void:
+	if visibleValue:
+		$CanvasLayer/Instructions.popup_centered();
+	else:
+		$CanvasLayer/Instructions.hide();

@@ -4,17 +4,11 @@ var atkUp: int = 0;
 var defUp: int = 0;
 var spdUp: int = 0;
 
-enum Types {
-	ATK,
-	DEF,
-	REGEN,
-	SPEED,
-	INVULNERABLE,
-	WIPE
-}
+const Types = Global.Types;
 
 signal healPlayer(health);
 signal wipeEnemies();
+signal dashChange();
 
 func initializeUpgrades() -> void:
 	atkUp = 0;
@@ -39,6 +33,10 @@ func applyUpgrade(details: Array) -> void:
 			increaseSpeed(value);
 		Types.WIPE:
 			emit_signal("wipeEnemies");
+		Types.DASH_CD:
+			emit_signal("dashChange", value);
+		Types.UNLIMITED_DASHES:
+			emit_signal("dashChange", 0);
 
 func increaseAtk(value: int) -> void:
 	if typeof(value) != TYPE_INT:

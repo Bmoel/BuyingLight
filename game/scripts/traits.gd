@@ -1,13 +1,6 @@
 extends Node
 
-enum Types {
-	ATK,
-	DEF,
-	REGEN,
-	SPEED,
-	INVULNERABLE,
-	WIPE
-}
+const Types = Global.Types;
 
 enum Odds {
 	COMMON,
@@ -51,33 +44,32 @@ var traitChancesPerRoom: Array = [
 #Trait Array Meanings: [type, value]
 
 const commonTraits: Dictionary = {
+	"Attack Up": [Types.ATK, 2],
+	"Defense Up": [Types.DEF, 2],
+	"Regen Health": [Types.REGEN, 2],
+	"Speed Up": [Types.SPEED, 2],
+}
+
+const uncommonTraits: Dictionary = {
 	"Attack Up": [Types.ATK, 5],
 	"Defense Up": [Types.DEF, 5],
 	"Regen Health": [Types.REGEN, 5],
 	"Speed Up": [Types.SPEED, 5],
-	"Wipe test": [Types.WIPE, 1]
 }
 
-const uncommonTraits: Dictionary = {
+const rareTraits: Dictionary = {
 	"Attack Up": [Types.ATK, 10],
 	"Defense Up": [Types.DEF, 10],
 	"Regen Health": [Types.REGEN, 10],
 	"Speed Up": [Types.SPEED, 10],
 }
 
-const rareTraits: Dictionary = {
+const epicTraits: Dictionary = {
 	"Attack Up": [Types.ATK, 15],
 	"Defense Up": [Types.DEF, 15],
 	"Regen Health": [Types.REGEN, 15],
 	"Speed Up": [Types.SPEED, 15],
-	"One Hit Invulnerability": [5, 1],
-}
-
-const epicTraits: Dictionary = {
-	"Attack Up": [Types.ATK, 20],
-	"Defense Up": [Types.DEF, 20],
-	"Regen Health": [Types.REGEN, 20],
-	"Speed Up": [Types.SPEED, 20],
+	"Dash Cooldown Down": [Types.DASH_CD, 1]
 }
 
 const legendaryTraits: Dictionary = {
@@ -85,7 +77,8 @@ const legendaryTraits: Dictionary = {
 	"Defense Up": [Types.DEF, 25],
 	"Regen Health": [Types.REGEN, 25],
 	"Speed Up": [Types.SPEED, 25],
-	"Wipe Out All Enemies": [Types.WIPE, 1]
+	"Wipe Out All Enemies": [Types.WIPE, 1],
+	"Unlimited Dashes": [Types.UNLIMITED_DASHES, 1]
 }
 
 func getShopOdds(roomNum: int) -> Dictionary:

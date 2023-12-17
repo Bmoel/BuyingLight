@@ -13,6 +13,7 @@ const konamiLetters = ["W","W","S", "S", "A", "D", "A", "D", "B", "A"];
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize();
+	Global.setKonamiValue(false);
 	if OS.get_name() == "HTML5":
 		exitButton.queue_free();
 	else:
@@ -27,7 +28,7 @@ func _ready():
 	$buttonGroup/Play.grab_focus();
 
 func _input(event):
-	if event.is_pressed() and "scancode" in event:
+	if event.is_pressed() and ("scancode" in event):
 		last7Inputs.append(OS.get_scancode_string(event.scancode).to_upper());
 	if len(last7Inputs) == 11:
 		last7Inputs.pop_front();

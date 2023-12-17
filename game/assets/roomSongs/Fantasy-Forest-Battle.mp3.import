@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Fantasy-Forest-Battle.mp3-0fa69ed4d786d729729a4be21c5be252.mp3str"
+
+[deps]
+
+source_file="res://assets/roomSongs/Fantasy-Forest-Battle.mp3"
+dest_files=[ "res://.import/Fantasy-Forest-Battle.mp3-0fa69ed4d786d729729a4be21c5be252.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

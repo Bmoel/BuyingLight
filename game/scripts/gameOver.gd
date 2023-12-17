@@ -8,8 +8,10 @@ func _ready():
 
 func _on_MainMenu_pressed():
 	Global.setupGame();
+	# warning-ignore:return_value_discarded
 	get_tree().change_scene(MAIN_MENU);
 
 func _on_Replay_pressed():
 	Global.setupGame();
+	# warning-ignore:return_value_discarded
 	get_tree().change_scene(ROOM);

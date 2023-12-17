@@ -4,15 +4,29 @@ onready var player = $PlayerAndUI/Character;
 onready var enemySpawner = $EnemySpawner;
 onready var ui = $PlayerAndUI;
 onready var shop = $PlayerAndUI/CanvasLayer/shop;
+onready var firstFloorInstr = $firstFloorHandle;
 
 const ROOM_LENGTH = 40000;
 const TOO_CLOSE_LENGTH = 400;
 const RANDOMIZER_ATTEMPS = 10;
+const MUSIC_OPTIONS = [
+	"res://assets/roomSongs/Fantasy-Forest-Battle.mp3",
+	"res://assets/roomSongs/Tower-Defense_Looping.mp3",
+	"res://assets/roomSongs/Arcade-Adventures-2.mp3",
+	"res://assets/roomSongs/Into-Battle_v001.mp3",
+];
 
 var _exitPosition: Vector2 = Vector2.ZERO;
 var _roomLightArray: Array = [];
 var _roomLightTrackerArray: Array = [];
 var _exitIndexInLightArray: int = -1;
+
+var firstFloorOptions = [
+	Vector2(8000,8000),
+	Vector2(32000,8000),
+	Vector2(8000,32000),
+	Vector2(32000,32000),
+];
 
 var lightTexture = preload("res://assets/whiteBlock.png");
 
@@ -22,6 +36,10 @@ signal roomLightTrackerChanged(lightArr);
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize();
+	var currentFloor = Global.getCurrentFloor();
+	var songPath = MUSIC_OPTIONS[(currentFloor-1) % 4];
+	$bgMusic.stream = load(songPath);
+	$bgMusic.play();
 	## CONNECTIONS ##
 	# warning-ignore:return_value_discarded
 	enemySpawner.connect("spawnEnemy", self, "_spawnEnemy");
@@ -33,13 +51,25 @@ func _ready():
 	$Exit.connect("playerExited", self, "_handleExit");
 	# warning-ignore:return_value_discarded
 	CharacterUpgrades.connect("wipeEnemies", self, "_wipeAllEnemies");
+	# warning-ignore:return_value_discarded
+	firstFloorInstr.connect("showInstructions", ui, "_handleInstructions");
+	# warning-ignore:return_value_discarded
+	firstFloorInstr.connect("startGame", self, "_onGameStartFrom1st");
 	## END CONNECTIONS ##
 	player.position = generateRandomPosition();
-	var roomExit = getRoomExit();
+	var roomExit;
+	if currentFloor != 1:
+		roomExit = getRoomExit();
+	else:
+		roomExit = firstFloorOptions[randi() % 4];
 	setExitPosition(roomExit);
 	setRoomLightArrays();
 	shop.setUIRarities();
-	enemySpawner.initiate();
+	if currentFloor == 1:
+		firstFloorInstr.show();
+		return;
+	var spawnTimes = Global.getEnemySpawnTimes();
+	enemySpawner.initiate(spawnTimes[0], spawnTimes[1]);
 
 func setRoomLightArrays() -> void:
 	var partition = Global.getRoomPartitions();
@@ -96,6 +126,8 @@ func exitIsTooCloseToPlayerStart(
 	return (xTooClose or yTooClose);
 
 func generateRandomPosition() -> Vector2:
+	if Global.getCurrentFloor() == 1:
+		return Vector2(18110,18300);
 	return Vector2(randi() % ROOM_LENGTH, randi() % ROOM_LENGTH);
 
 func getTextureScaleVal(partition: float) -> float:
@@ -124,9 +156,9 @@ func setExitPosition(newPosition: Vector2) -> void:
 
 func getPositionClosishToPlayer() -> Vector2:
 	var currentPlayerPos = $PlayerAndUI/Character.position;
-	var xMargin: int = (randi() % 2000) + 1000;
+	var xMargin: int = (randi() % 500) + 500;
 	var xPos = getOKPos(currentPlayerPos.x, xMargin);
-	var yMargin: int = (randi() % 2000) + 1000;
+	var yMargin: int = (randi() % 500) + 500;
 	var yPos = getOKPos(currentPlayerPos.y, yMargin);
 	return Vector2(xPos,yPos);
 
@@ -176,3 +208,10 @@ func _wipeAllEnemies() -> void:
 func _handleExit() -> void:
 	Global.incrementCurrentFloor();
 	get_tree().change_scene(Global.ROOM_PATH);
+
+func _onGameStartFrom1st() -> void:
+	firstFloorInstr.hide();
+	$firstFloorHandle/isntr/CollisionShape2D.disabled = true;
+	$firstFloorHandle/start/CollisionShape2D.disabled = true;
+	var spawnTimes = Global.getEnemySpawnTimes();
+	enemySpawner.initiate(spawnTimes[0], spawnTimes[1]);

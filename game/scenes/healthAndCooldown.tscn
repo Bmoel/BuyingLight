@@ -37,7 +37,7 @@ margin_right = 400.0
 margin_bottom = 52.0
 rect_min_size = Vector2( 400, 52 )
 custom_fonts/font = SubResource( 1 )
-text = "Dash"
+text = "Dash: Ready"
 
 [node name="Timer" type="Timer" parent="Container/DashCD"]
 one_shot = true

@@ -4,6 +4,22 @@ extends Node
 const ROOM_PATH: String = "res://scenes/room.tscn";
 ### end region global constants ###
 
+enum Types {
+	ATK,
+	DEF,
+	REGEN,
+	SPEED,
+	DASH_CD
+	WIPE,
+	UNLIMITED_DASHES
+}
+
+###PLAYER STATE THAT NEEDS TO BE KEPT###
+var playerHealth = 100;
+var dashCooldown = 6;
+var hasUnlimitedDashes = false;
+########################################
+
 ### region global variables ###
 var _currentGold: int = 0;
 var _numberHeroesUnlocked: int = 1;
@@ -17,7 +33,7 @@ signal blinkEnemyLightHandler(enemyId, didEnter);
 
 ### region helper functions ###
 func setupGame() -> void:
-	_currentGold = 10 if (!_hasKonamiCheats) else 5000;
+	_currentGold = 0 if (!_hasKonamiCheats) else 5000;
 	_numberHeroesUnlocked = 1;
 	_heroesUnlocked = ["knight"];
 	_currentFloor = 1;
@@ -45,6 +61,33 @@ func getRoomPartitions() -> int:
 		5: return 8;
 		6: return 8;
 		_: return 10;
+
+func getEnemySpawnTimes() -> Array:
+	if _currentFloor == 1:
+		return [8.0,12.0];
+	elif _currentFloor == 2:
+		return [7.0,11.0];
+	elif _currentFloor == 3:
+		return [7.0,10.0];
+	return [5.0, 8.0];
+
+func getBasicEnemyHealth() -> int:
+	if _currentFloor == 1:
+		return 10;
+	elif _currentFloor == 2:
+		return 15;
+	elif _currentFloor == 3:
+		return 30;
+	return 30 + ((_currentFloor - 3) * 20);
+
+func getBlinkEnemyHealth() -> int:
+	if _currentFloor == 1:
+		return 20;
+	elif _currentFloor == 2:
+		return 30;
+	elif _currentFloor == 3:
+		return 50;
+	return 50 + ((_currentFloor - 3) * 20);
 ### end region helper functions ###
 
 ### region getter/setter functions ###

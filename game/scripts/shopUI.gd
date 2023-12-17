@@ -100,12 +100,18 @@ func isValidShopOdd(startRange: float, endRange:float, randNum: float) -> bool:
 
 func _on_Reveal_pressed():
 	revealButton.release_focus();
-	if !canBuy(REVEAL_COST): return;
+	if !canBuy(REVEAL_COST):
+		$wrongSound.play();
+		return;
+	$revealSound.play();
 	emit_signal("boughtReveal", REVEAL_COST);
 
 func _on_Roll_pressed():
 	rollButton.release_focus();
-	if !canBuy(ROLL_COST): return;
+	if !canBuy(ROLL_COST):
+		$wrongSound.play();
+		return;
+	$rollSound.play();
 	Global.subtractFromCurrentGold(ROLL_COST);
 	enableAllButtons();
 	setUpgrades();
@@ -113,7 +119,11 @@ func _on_Roll_pressed():
 func _on_upgrade1_pressed():
 	upgrade1Button.release_focus();
 	var cost = getUpgradeCost(0);
-	if !canBuy(cost): return;
+	if !canBuy(cost):
+		$wrongSound.play();
+		return;
+	Global.subtractFromCurrentGold(cost);
+	$upgradeSound.play();
 	upgrade1Button.disabled = true;
 	upgrade1Button.mouse_filter = Button.MOUSE_FILTER_IGNORE;
 	var backsplash = upgrade1Button.get_child(UPGRADE_IDX);
@@ -123,7 +133,11 @@ func _on_upgrade1_pressed():
 func _on_upgrade2_pressed():
 	upgrade2Button.release_focus();
 	var cost = getUpgradeCost(1);
-	if !canBuy(cost): return;
+	if !canBuy(cost):
+		$wrongSound.play();
+		return;
+	Global.subtractFromCurrentGold(cost);
+	$upgradeSound.play();
 	upgrade2Button.disabled = true;
 	upgrade2Button.mouse_filter = Button.MOUSE_FILTER_IGNORE;
 	var backsplash = upgrade2Button.get_child(UPGRADE_IDX);
@@ -133,17 +147,26 @@ func _on_upgrade2_pressed():
 func _on_upgrade3_pressed():
 	upgrade3Button.release_focus();
 	var cost = getUpgradeCost(2);
-	if !canBuy(cost): return;
+	if !canBuy(cost):
+		$wrongSound.play();
+		return;
+	Global.subtractFromCurrentGold(cost);
+	$upgradeSound.play();
 	upgrade3Button.disabled = true;
 	upgrade3Button.mouse_filter = Button.MOUSE_FILTER_IGNORE;
 	var backsplash = upgrade3Button.get_child(UPGRADE_IDX);
 	backsplash.show();
 	CharacterUpgrades.applyUpgrade(getUpgradeDetails(3));
 
+
 func _on_upgrade4_pressed():
 	upgrade4Button.release_focus();
 	var cost = getUpgradeCost(3);
-	if !canBuy(cost): return;
+	if !canBuy(cost):
+		$wrongSound.play();
+		return;
+	Global.subtractFromCurrentGold(cost);
+	$upgradeSound.play();
 	upgrade4Button.disabled = true;
 	upgrade4Button.mouse_filter = Button.MOUSE_FILTER_IGNORE;
 	var backsplash = upgrade4Button.get_child(UPGRADE_IDX);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/minimap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/character.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/shopUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://scenes/healthAndCooldown.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/instructions.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -52,3 +53,5 @@ custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "Show shop: [color=#03f0fc]Tab[/color]"
 text = "Show shop: Tab"
+
+[node name="Instructions" parent="CanvasLayer" instance=ExtResource( 7 )]

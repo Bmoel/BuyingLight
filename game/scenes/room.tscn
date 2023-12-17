@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/room.gd" type="Script" id=1]
 [ext_resource path="res://scenes/playerUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Exit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://scripts/firstFloorHandle.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 19966, 714 )
@@ -16,6 +18,20 @@ extents = Vector2( 19925, 1081 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 1279, 19943.5 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 108, 110 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 118.5, 110.25 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 64
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 64
+font_data = ExtResource( 5 )
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 1 )
@@ -67,3 +83,73 @@ shape = SubResource( 4 )
 visible = false
 
 [node name="EnemyHolder" type="Node2D" parent="."]
+
+[node name="firstFloorHandle" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 6 )
+
+[node name="isntr" type="Area2D" parent="firstFloorHandle"]
+position = Vector2( 18000, 18000 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="firstFloorHandle/isntr"]
+position = Vector2( -47, 89 )
+shape = SubResource( 5 )
+
+[node name="start" type="Area2D" parent="firstFloorHandle"]
+position = Vector2( 17992, 17992 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="firstFloorHandle/start"]
+position = Vector2( 300.5, 97.75 )
+shape = SubResource( 6 )
+
+[node name="ColorRect" type="ColorRect" parent="firstFloorHandle"]
+light_mask = 0
+margin_left = 18179.0
+margin_top = 17983.0
+margin_right = 18406.0
+margin_bottom = 18193.0
+color = Color( 0.215686, 0.796078, 0.870588, 0.647059 )
+
+[node name="ColorRect2" type="ColorRect" parent="firstFloorHandle"]
+light_mask = 0
+margin_left = 17851.0
+margin_top = 17983.0
+margin_right = 18056.0
+margin_bottom = 18193.0
+color = Color( 0.454902, 0.952941, 0.705882, 0.647059 )
+
+[node name="instrText" type="Label" parent="firstFloorHandle"]
+light_mask = 0
+margin_left = 17547.0
+margin_top = 18000.0
+margin_right = 17835.0
+margin_bottom = 18162.0
+rect_min_size = Vector2( 100, 0 )
+custom_colors/font_color = Color( 0.454902, 0.952941, 0.705882, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Stand here 
+for 
+instructions"
+align = 1
+
+[node name="startText" type="Label" parent="firstFloorHandle"]
+light_mask = 0
+margin_left = 18432.0
+margin_top = 18000.0
+margin_right = 18768.0
+margin_bottom = 18162.0
+custom_colors/font_color = Color( 0.215686, 0.796078, 0.870588, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "Press 'Start' 
+here to
+begin game"
+align = 1
+
+[node name="bgMusic" type="AudioStreamPlayer" parent="."]
+volume_db = -15.0
+bus = "Music"
+
+[connection signal="body_entered" from="firstFloorHandle/isntr" to="firstFloorHandle" method="_on_isntr_body_entered"]
+[connection signal="body_exited" from="firstFloorHandle/isntr" to="firstFloorHandle" method="_on_isntr_body_exited"]
+[connection signal="body_entered" from="firstFloorHandle/start" to="firstFloorHandle" method="_on_start_body_entered"]
+[connection signal="body_exited" from="firstFloorHandle/start" to="firstFloorHandle" method="_on_start_body_exited"]

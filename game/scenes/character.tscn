@@ -175,7 +175,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=87]
-extents = Vector2( 68.25, 64 )
+extents = Vector2( 80.25, 72 )
 
 [sub_resource type="CircleShape2D" id=88]
 radius = 160.2
@@ -208,7 +208,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnightHurtboxPivot/knight"]
-position = Vector2( 30.75, 39 )
+position = Vector2( 42.75, 39 )
 shape = SubResource( 87 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

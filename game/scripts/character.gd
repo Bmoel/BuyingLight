@@ -21,7 +21,7 @@ var inAttackAnimation: bool = false;
 const FRICTION = 500;
 const DASH_MULTIPLIER: int = 4;
 var ACCELERATION = 25000;
-var MAX_SPEED = 2500;
+var MAX_SPEED = 3500;
 var DASH_COOLDOWN: float = 6.0;
 
 const MID_X: int = 960;
@@ -31,7 +31,7 @@ const BASE_DMG: int = 5;
 
 var velocity = Vector2.ZERO;
 var _dashCooldownAvalailable: bool = true;
-
+var _hasUnlimitedDashes: bool = false;
 signal playerMoved(newPosition);
 signal playerDashed(cdTime);
 signal playerTookDamage(dmg);
@@ -41,7 +41,10 @@ func _ready():
 	animationPlayer.play("default");
 	# warning-ignore:return_value_discarded
 	animationPlayer.connect("animation_finished", self, "_animationFinished");
+	# warning-ignore:return_value_discarded
+	CharacterUpgrades.connect("dashChange", self, "_handleDashChange");
 	knightSwordHitbox.disabled = true;
+	DASH_COOLDOWN = Global.dashCooldown;
 
 func _input(_event):
 	if inAttackAnimation:
@@ -53,7 +56,7 @@ func _input(_event):
 		animationPlayer.play(currentCharacter + "_attack");
 		inAttackAnimation = true;
 		handleCharacterAttack();
-	if Input.is_action_just_pressed("ui_select") and _dashCooldownAvalailable:
+	if Input.is_action_just_pressed("ui_select") and (_dashCooldownAvalailable || _hasUnlimitedDashes):
 		MAX_SPEED *= DASH_MULTIPLIER;
 		ACCELERATION *= DASH_MULTIPLIER;
 		_dashCooldownAvalailable = false;
@@ -228,3 +231,10 @@ func _on_spriteFrames_animation_finished():
 	if animationPlayer.animation == (currentCharacter + "_die"):
 		# warning-ignore:return_value_discarded
 		get_tree().change_scene(GAME_OVER);
+
+func _handleDashChange(value: int) -> void:
+	if value == 0:
+		_hasUnlimitedDashes = true;
+	if ((DASH_COOLDOWN - value) <= 0):
+		return;
+	DASH_COOLDOWN -= value;

@@ -11,9 +11,13 @@ const blinkEnemy = preload(BLINK_ENEMY_PATH);
 
 signal spawnEnemy(newEnemy);
 
-func initiate() -> void:
-	startBasicEnemyTimer(8.0);
-	startBlinkEnemyTimer(12.0);
+func initiate(basicTime: float, blinkTime: float) -> void:
+	startBasicEnemyTimer(basicTime);
+	startBlinkEnemyTimer(blinkTime);
+	var newEnemy = basicEnemy.instance();
+	var health = Global.getBasicEnemyHealth();
+	newEnemy.baseHealth = health;
+	emit_signal("spawnEnemy", newEnemy);
 
 func startBasicEnemyTimer(time: float):
 	basicTimer.one_shot = false;
@@ -30,9 +34,13 @@ func stopBasicTimer():
 
 func _on_basicEnemySpawner_timeout():
 	var newEnemy = basicEnemy.instance();
+	var health = Global.getBasicEnemyHealth();
+	newEnemy.baseHealth = health;
 	emit_signal("spawnEnemy", newEnemy);
 
 
 func _on_blinkerEnemySpawner_timeout():
 	var newEnemy = blinkEnemy.instance();
+	var health = Global.getBlinkEnemyHealth();
+	newEnemy.baseHealth = health;
 	emit_signal("spawnEnemy", newEnemy);

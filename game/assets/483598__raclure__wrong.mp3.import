@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/483598__raclure__wrong.mp3-c53b1140dedc4bca157bd3631b3c3c90.mp3str"
+
+[deps]
+
+source_file="res://assets/483598__raclure__wrong.mp3"
+dest_files=[ "res://.import/483598__raclure__wrong.mp3-c53b1140dedc4bca157bd3631b3c3c90.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

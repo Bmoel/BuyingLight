@@ -72,9 +72,10 @@ shape = SubResource( 10 )
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 3 )
-texture_scale = 0.5
+texture_scale = 0.4
 
 [node name="enemyHit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
+bus = "SFX"
 
 [connection signal="finished" from="enemyHit" to="." method="_on_enemyHit_finished"]

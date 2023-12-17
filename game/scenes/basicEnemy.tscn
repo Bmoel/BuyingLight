@@ -76,5 +76,6 @@ texture_scale = 0.5
 
 [node name="enemyHit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+bus = "SFX"
 
 [connection signal="finished" from="enemyHit" to="." method="_on_enemyHit_finished"]

@@ -32,13 +32,22 @@ custom_fonts/bold_font = SubResource( 1 )
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[i][color=#eb4034]Music:[/color][/i]
-“BOARDWALK ARCADE 2”
+BOARDWALK ARCADE 2
+INTO BATTLE_V001
+TOWER DEFENSE\"
+FANTASY FOREST BATTLE
+ARCADE ADVENTURES 2
 by Eric Matyas
 www.soundimage.org
 ------------------------------------------------------------
 [i][color=#eb4034]Fonts:[/color][/i]
 Monogram Font
 https://datagoblin.itch.io/monogram
+
+Silver - Premiere pixel font for games
+Author: Poppy Works, Wolfgang Wozniak
+Major Contributors: Itou Hiro (PixelMPlus), leedheo (DOSGothic), ぶち
+https://poppyworks.itch.io/silver
 ------------------------------------------------------------
 [i][color=#eb4034]Art:[/color][/i]
 Girl Knight Character Asset
@@ -62,9 +71,21 @@ Enemy Hit
 By D001447733
 https://freesound.org/people/D001447733/sounds/464623/
 
+Laser Shot 1
+by Eric Matyas
+www.soundimage.org
 
+S_UI_Click_Stereo_0011.wav
+yake01
+https://freesound.org/people/yake01/sounds/575870/
 
+Upgrade SFX.wav
+jhyland
+https://freesound.org/people/jhyland/sounds/539678/
 
+Wrong
+Raclure
+https://freesound.org/people/Raclure/sounds/483598/
 
 
 
@@ -239,15 +260,25 @@ Almost there
 
 Sound that plays in the MainMenu when you enter that really famous code you know the one :)
 By qubodup
-https://freesound.org/people/qubodup/sounds/442943/"
+https://freesound.org/people/qubodup/sounds/442943/
+"
 text = "Music:
-“BOARDWALK ARCADE 2”
+BOARDWALK ARCADE 2
+INTO BATTLE_V001
+TOWER DEFENSE\"
+FANTASY FOREST BATTLE
+ARCADE ADVENTURES 2
 by Eric Matyas
 www.soundimage.org
 ------------------------------------------------------------
 Fonts:
 Monogram Font
 https://datagoblin.itch.io/monogram
+
+Silver - Premiere pixel font for games
+Author: Poppy Works, Wolfgang Wozniak
+Major Contributors: Itou Hiro (PixelMPlus), leedheo (DOSGothic), ぶち
+https://poppyworks.itch.io/silver
 ------------------------------------------------------------
 Art:
 Girl Knight Character Asset
@@ -271,9 +302,21 @@ Enemy Hit
 By D001447733
 https://freesound.org/people/D001447733/sounds/464623/
 
+Laser Shot 1
+by Eric Matyas
+www.soundimage.org
 
+S_UI_Click_Stereo_0011.wav
+yake01
+https://freesound.org/people/yake01/sounds/575870/
 
+Upgrade SFX.wav
+jhyland
+https://freesound.org/people/jhyland/sounds/539678/
 
+Wrong
+Raclure
+https://freesound.org/people/Raclure/sounds/483598/
 
 
 
@@ -448,4 +491,5 @@ Almost there
 
 Sound that plays in the MainMenu when you enter that really famous code you know the one :)
 By qubodup
-https://freesound.org/people/qubodup/sounds/442943/"
+https://freesound.org/people/qubodup/sounds/442943/
+"

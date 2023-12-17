@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Tower-Defense_Looping.mp3-6cde2c43dc2ff3fe7c883880b0c60b5c.mp3str"
+
+[deps]
+
+source_file="res://assets/roomSongs/Tower-Defense_Looping.mp3"
+dest_files=[ "res://.import/Tower-Defense_Looping.mp3-6cde2c43dc2ff3fe7c883880b0c60b5c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

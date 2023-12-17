@@ -28,7 +28,7 @@ func applyUpgrade(details: Array) -> void:
 		Types.DEF:
 			increaseDef(value);
 		Types.REGEN:
-			pass;
+			emit_signal("healPlayer", value);
 		Types.SPEED:
 			increaseSpeed(value);
 		Types.WIPE:

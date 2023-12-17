@@ -3,8 +3,6 @@ extends Node2D
 onready var exitButton = $Exit;
 onready var lightHolder = $LightHolder;
 
-export var IS_DEBUG = false;
-
 var last7Inputs: Array = [];
 
 const konamiArrows = ["UP","UP","DOWN", "DOWN", "LEFT", "RIGHT", "LEFT", "RIGHT", "B", "A"];
@@ -42,10 +40,6 @@ func konamiCodeEntered(keyPresses: Array) -> bool:
 
 func _on_Play_pressed():
 	Global.setupGame();
-	## SETS DEBUG OPTIONS REMOVE FOR FINAL GAME
-	if IS_DEBUG:
-		setDubugOptions();
-	## END OF REMOVE DEBUG OPTIONS
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene(Global.ROOM_PATH);
 
@@ -109,8 +103,3 @@ func _on_CreditsWindow_popup_hide():
 
 func _on_OptionsWindow_popup_hide():
 	lightHolder.show();
-
-func setDubugOptions():
-	Global.setHeroesUnlocked(["knight", "shotgunner", "archer"]);
-	Global.setNumberHeroesUnlocked(3);
-	Global.setCurrentGold(5000);

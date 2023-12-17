@@ -44,7 +44,8 @@ func _process(delta):
 			_playerPosition.y + rand_range(-500.0, 500.0)
 		);
 		obfuscaterTimer = 0.0;
-	velocity = position.direction_to(_playerPosition) * baseSpeed;
+	var floorSpeed = baseSpeed + ((Global.getCurrentFloor()-1) * 50);
+	velocity = position.direction_to(_playerPosition) * floorSpeed;
 	velocity = move_and_slide(velocity);
 	##########################################################
 	if len(_roomLightTrackerArray) > 0:

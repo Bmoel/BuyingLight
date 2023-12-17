@@ -8,7 +8,7 @@ var _goldAmount = 1;
 var _damageToDeal: int = 10;
 
 var velocity: Vector2 = Vector2.ZERO;
-var baseSpeed:int = 300;
+export var baseSpeed:int = 300;
 var baseHealth:int = 10;
 
 var room = null;
@@ -34,7 +34,8 @@ func _process(delta):
 			_playerPosition.y + rand_range(-500.0, 500.0)
 		);
 		obfuscaterTimer = 0.0;
-	velocity = position.direction_to(_playerPosition) * baseSpeed;
+	var floorSpeed = baseSpeed + ((Global.getCurrentFloor()-1) * 50);
+	velocity = position.direction_to(_playerPosition) * floorSpeed;
 	velocity = move_and_slide(velocity);
 	blinkTmr += delta;
 	if _justHit < NUM_BLINKS and blinkTmr > TIME_BTWN_BLINKS:

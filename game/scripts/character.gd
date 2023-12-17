@@ -20,8 +20,8 @@ var inAttackAnimation: bool = false;
 
 const FRICTION = 500;
 const DASH_MULTIPLIER: int = 4;
-var ACCELERATION = 25000;
-var MAX_SPEED = 3500;
+export var ACCELERATION = 25000;
+export var MAX_SPEED = 3500;
 var DASH_COOLDOWN: float = 6.0;
 
 const MID_X: int = 960;
@@ -57,6 +57,7 @@ func _input(_event):
 		inAttackAnimation = true;
 		handleCharacterAttack();
 	if Input.is_action_just_pressed("ui_select") and (_dashCooldownAvalailable || _hasUnlimitedDashes):
+		$dashSound.play();
 		MAX_SPEED *= DASH_MULTIPLIER;
 		ACCELERATION *= DASH_MULTIPLIER;
 		_dashCooldownAvalailable = false;
@@ -85,20 +86,21 @@ func _physics_process(delta):
 	
 	input_velocity = input_velocity.normalized();
 	
-	var currentSpeed = MAX_SPEED + CharacterUpgrades.spdUp;
+	var currentSpeed = MAX_SPEED;
+	var currentAccel = ACCELERATION + CharacterUpgrades.spdUp;
 	
 	# Case where no input is given
 	if input_velocity == Vector2.ZERO:
 		velocity = input_velocity.move_toward(Vector2.ZERO, FRICTION*delta);
 	# Case where only vertical input is given
 	elif input_velocity.x == 0:
-		velocity = input_velocity.move_toward(Vector2(0,input_velocity.y).normalized()*currentSpeed, ACCELERATION*delta);
+		velocity = input_velocity.move_toward(Vector2(0,input_velocity.y).normalized()*currentSpeed, currentAccel*delta);
 	# Case where only horizontal input is given
 	elif input_velocity.y == 0:
-		velocity = input_velocity.move_toward(Vector2(input_velocity.x,0).normalized()*currentSpeed, ACCELERATION*delta);
+		velocity = input_velocity.move_toward(Vector2(input_velocity.x,0).normalized()*currentSpeed, currentAccel*delta);
 	# Case where both horizontal and vertical input is given
 	else:
-		velocity = input_velocity.move_toward(0.7*input_velocity*currentSpeed, ACCELERATION*delta);
+		velocity = input_velocity.move_toward(0.7*input_velocity*currentSpeed, currentAccel*delta);
 	
 	velocity = move_and_slide(velocity);
 	#Atk indicator direction for player

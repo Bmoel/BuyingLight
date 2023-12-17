@@ -53,14 +53,8 @@ func incrementCurrentFloor() -> void:
 	_currentFloor += 1;
 
 func getRoomPartitions() -> int:
-	match(_currentFloor):
-		1: return 4;
-		2: return 4;
-		3: return 6;
-		4: return 6;
-		5: return 8;
-		6: return 8;
-		_: return 10;
+	#TODO: Test more than 4 partition lol
+	return 4;
 
 func getEnemySpawnTimes() -> Array:
 	if _currentFloor == 1:

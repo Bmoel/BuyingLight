@@ -12,6 +12,7 @@ script = ExtResource( 3 )
 
 [node name="basicEnemy" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1216, 544 )
+baseSpeed = 365
 
 [node name="BlinkingEnemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1312, 152 )

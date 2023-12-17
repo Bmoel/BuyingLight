@@ -1,39 +1,26 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/Silver.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Assets/Silver.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=21]
 size = 48
-font_data = ExtResource( 2 )
+font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=22]
 size = 48
-font_data = ExtResource( 2 )
+font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=23]
 size = 48
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 48
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 48
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=18]
-size = 48
-font_data = ExtResource( 2 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=20]
 size = 48
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=19]
+[sub_resource type="DynamicFont" id=24]
 size = 48
-font_data = ExtResource( 2 )
+font_data = ExtResource( 1 )
 
 [node name="Instructions" type="Popup"]
 margin_right = 900.0
@@ -44,53 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 tab_align = 0
 
-[node name="Intro" type="Tabs" parent="InstructionTabs"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-
-[node name="MarginContainer" type="MarginContainer" parent="InstructionTabs/Intro"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="GridContainer" type="GridContainer" parent="InstructionTabs/Intro/MarginContainer"]
-margin_right = 892.0
-margin_bottom = 569.0
-
-[node name="welcome" type="Label" parent="InstructionTabs/Intro/MarginContainer/GridContainer"]
-margin_right = 886.0
-margin_bottom = 111.0
-rect_min_size = Vector2( 200, 20 )
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 1 )
-text = "Welcome to Buying light, a survival slayer game intertwined 
-with luck."
-
-[node name="Explananation" type="Label" parent="InstructionTabs/Intro/MarginContainer/GridContainer"]
-margin_top = 115.0
-margin_right = 886.0
-margin_bottom = 283.0
-rect_min_size = Vector2( 200, 0 )
-custom_fonts/font = SubResource( 2 )
-text = "
-The object of the game is to earn money by defeating enemies
-in order to earn gold, and find your way to the higher floors."
-
-[node name="Warnings" type="Label" parent="InstructionTabs/Intro/MarginContainer/GridContainer"]
-margin_top = 287.0
-margin_right = 886.0
-margin_bottom = 569.0
-custom_fonts/font = SubResource( 3 )
-text = "
-In order to find the exit to the next floor, you must light
-up the respective block that the exit is on. This can be done
-by rolling for a reveal in the shop. In addition, you can also
-buy upgrades to make yourself stronger if you wish!"
-
-[node name="Movement and Weapon" type="Tabs" parent="InstructionTabs"]
+[node name="Introduction" type="Tabs" parent="InstructionTabs"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -99,27 +40,53 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="MarginContainer" type="MarginContainer" parent="InstructionTabs/Movement and Weapon"]
+[node name="MarginContainer" type="MarginContainer" parent="InstructionTabs/Introduction"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="GridContainer" type="GridContainer" parent="InstructionTabs/Movement and Weapon/MarginContainer"]
-margin_right = 844.0
-margin_bottom = 568.0
+[node name="GridContainer" type="GridContainer" parent="InstructionTabs/Introduction/MarginContainer"]
+margin_right = 886.0
+margin_bottom = 567.0
 
-[node name="BasicMovement" type="Label" parent="InstructionTabs/Movement and Weapon/MarginContainer/GridContainer"]
+[node name="Label" type="Label" parent="InstructionTabs/Introduction/MarginContainer/GridContainer"]
+margin_right = 886.0
+margin_bottom = 567.0
+custom_fonts/font = SubResource( 21 )
+text = "Welcome to Buying light, a survival slayer game intertwined 
+with luck.
+
+The object of the game is to earn money by defeating enemies
+in order to earn gold, and find your way to the higher floors.
+
+In order to find the exit to the next floor, you must light
+up the respective block that the exit is on. This can be done
+by rolling for a reveal in the shop. In addition, you can also
+buy upgrades to make yourself stronger if you wish!"
+
+[node name="Movement & Weapon" type="Tabs" parent="InstructionTabs"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="MarginContainer" type="MarginContainer" parent="InstructionTabs/Movement & Weapon"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="InstructionTabs/Movement & Weapon/MarginContainer"]
 margin_right = 844.0
-margin_bottom = 111.0
-custom_fonts/font = SubResource( 4 )
+margin_bottom = 567.0
+
+[node name="Label" type="Label" parent="InstructionTabs/Movement & Weapon/MarginContainer/GridContainer"]
+margin_right = 844.0
+margin_bottom = 567.0
+custom_fonts/font = SubResource( 22 )
 text = "Basic Movement:
-W = Up, A = Left, S = Down, D = Right"
+W = Up, A = Left, S = Down, D = Right
 
-[node name="DashAndWeapon" type="Label" parent="InstructionTabs/Movement and Weapon/MarginContainer/GridContainer"]
-margin_top = 115.0
-margin_right = 844.0
-margin_bottom = 568.0
-custom_fonts/font = SubResource( 5 )
-text = "
 Dash Ability:
 Tap Space, will move towards current direction.
 
@@ -128,8 +95,7 @@ In order to swing your sword, press the Left Mouse Button.
 It will swing in the currect direction your mouse is facing 
 in relation to your character."
 
-[node name="Light" type="Tabs" parent="InstructionTabs"]
-visible = false
+[node name="Illumination" type="Tabs" parent="InstructionTabs"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -137,14 +103,18 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="MarginContainer" type="MarginContainer" parent="InstructionTabs/Light"]
+[node name="MarginContainer" type="MarginContainer" parent="InstructionTabs/Illumination"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="TimePts" type="Label" parent="InstructionTabs/Light/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="InstructionTabs/Illumination/MarginContainer"]
 margin_right = 889.0
 margin_bottom = 396.0
-custom_fonts/font = SubResource( 18 )
+
+[node name="Label" type="Label" parent="InstructionTabs/Illumination/MarginContainer/GridContainer"]
+margin_right = 889.0
+margin_bottom = 396.0
+custom_fonts/font = SubResource( 23 )
 text = "Your character has a small amount of light around them at
 all times. This can help pick up on some enemies that may or
 may not have the tendency to dissapear in to the darkness.
@@ -186,29 +156,24 @@ would be to move up floors."
 
 [node name="Conclusion" type="Tabs" parent="InstructionTabs"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_right = 40.0
+margin_bottom = 24.0
 
 [node name="MarginContainer" type="MarginContainer" parent="InstructionTabs/Conclusion"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="GridContainer" type="GridContainer" parent="InstructionTabs/Conclusion/MarginContainer"]
-margin_right = 892.0
-margin_bottom = 564.0
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="Conclusion" type="Label" parent="InstructionTabs/Conclusion/MarginContainer/GridContainer"]
-margin_right = 805.0
-margin_bottom = 396.0
-custom_fonts/font = SubResource( 19 )
+[node name="Label" type="Label" parent="InstructionTabs/Conclusion/MarginContainer/GridContainer"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 24 )
 text = "You are now ready to play the game!
 
 Enemies will start spawning right away, so best of luck!
 
 Press ENTER inside of the right of this one to start the
-game
-"
+game"

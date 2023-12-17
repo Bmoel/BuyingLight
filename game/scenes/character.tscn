@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/light.webp" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 40 )
+extents = Vector2( 13, 40 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4

@@ -58,12 +58,12 @@ func getRoomPartitions() -> int:
 
 func getEnemySpawnTimes() -> Array:
 	if _currentFloor == 1:
-		return [8.0,12.0];
+		return [5.0,10.0];
 	elif _currentFloor == 2:
-		return [7.0,11.0];
+		return [4.0,8.0];
 	elif _currentFloor == 3:
-		return [7.0,10.0];
-	return [5.0, 8.0];
+		return [3.0,7.0];
+	return [2.0, 6.0];
 
 func getBasicEnemyHealth() -> int:
 	if _currentFloor == 1:

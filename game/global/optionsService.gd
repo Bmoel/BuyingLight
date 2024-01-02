@@ -1,4 +1,4 @@
-extends Popup
+extends Node
 
 #CONSTANTS
 const MIN_VOLUME = -20
@@ -10,17 +10,6 @@ const SFX_VOLUME = 2
 var master_vol = 500
 var music_vol = 500
 var sfx_vol = 500
-
-func _on_MasterVol_value_changed(value):
-	update_volume(MASTER_VOLUME,value);
-
-
-func _on_MusicVol_value_changed(value):
-	update_volume(MASTER_VOLUME,value);
-
-
-func _on_SFXVol_value_changed(value):
-	update_volume(SFX_VOLUME,value);
 
 """
 * Pre: one of the volume sliders was changed
@@ -53,3 +42,9 @@ func update_volume(bus_idx, value) -> void:
 	# if the previous value was a min and now isn't, unmute the bus
 	if was_mute and value != MIN_VOLUME:
 		AudioServer.set_bus_mute(bus_idx, false)
+
+func set_resolution(newResolution: Vector2) -> void:
+	OS.window_size = newResolution;
+
+func set_fullscreen(isFullscreen: bool) -> void:
+	OS.window_fullscreen = isFullscreen;

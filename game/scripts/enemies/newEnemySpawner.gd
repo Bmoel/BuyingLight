@@ -3,8 +3,8 @@ extends Node2D
 onready var basicTimer: Timer = $basicEnemySpawner;
 onready var blinkTimer: Timer = $blinkerEnemySpawner;
 
-const BASIC_ENEMY_PATH: String = "res://scenes/basicEnemy.tscn";
-const BLINK_ENEMY_PATH: String = "res://scenes/blinkingEnemy.tscn";
+const BASIC_ENEMY_PATH: String = "res://scenes/enemies/basicEnemy.tscn";
+const BLINK_ENEMY_PATH: String = "res://scenes/enemies/blinkingEnemy.tscn";
 
 const basicEnemy = preload(BASIC_ENEMY_PATH);
 const blinkEnemy = preload(BLINK_ENEMY_PATH);

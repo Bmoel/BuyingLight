@@ -46,7 +46,10 @@ func increaseAtk(value: int) -> void:
 func increaseDef(value: int) -> void:
 	if typeof(value) != TYPE_INT:
 		return;
-	defUp += value;
+	var newDefValue: int = defUp + value;
+	if newDefValue > 50:
+		newDefValue = 50;
+	defUp = newDefValue;
 
 func increaseSpeed(value: int) -> void:
 	if typeof(value) != TYPE_INT:

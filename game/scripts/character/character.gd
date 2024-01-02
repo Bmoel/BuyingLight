@@ -7,7 +7,7 @@ onready var atkIndicatorPivot: Position2D = $AtkIndicator;
 onready var indicatorSprite: Sprite = $AtkIndicator/IndicatorSprite;
 onready var knightSwordHitbox: CollisionShape2D = $KnightHurtboxPivot/knight/CollisionShape2D;
 
-const GAME_OVER = "res://scenes/gameOver.tscn";
+const GAME_OVER = "res://scenes/menus/gameOver.tscn";
 
 var currentCharacter: String = "knight";
 const CHARACTER_SCALES: Dictionary = {
@@ -224,7 +224,8 @@ func _on_lightArea_body_exited(body):
 func _on_takeDamageArea_body_entered(body):
 	if body.has_method("getDamageAmount"):
 		var dmgToTake: int = body.getDamageAmount();
-		dmgToTake -= CharacterUpgrades.defUp;
+		var defBuffer: float = float(CharacterUpgrades.defUp / 100.0);
+		dmgToTake -= int((dmgToTake * defBuffer));
 		emit_signal("playerTookDamage", dmgToTake);
 	if body.has_method("death"):
 		body.death();

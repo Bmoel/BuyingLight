@@ -1,7 +1,7 @@
 extends Node
 
 ### region global constants ###
-const ROOM_PATH: String = "res://scenes/room.tscn";
+const ROOM_PATH: String = "res://scenes/game/room.tscn";
 ### end region global constants ###
 
 enum Types {

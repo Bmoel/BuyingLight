@@ -11,18 +11,20 @@ config_version=4
 [application]
 
 config/name="GodotWild_Illumination"
-run/main_scene="res://scenes/mainMenu.tscn"
+run/main_scene="res://scenes/menus/mainMenu.tscn"
 
 [autoload]
 
 Global="*res://global/global.gd"
 CharacterUpgrades="*res://global/characterUpgrades.gd"
+OptionsService="*res://global/optionsService.gd"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
 window/size/resizable=false
+window/stretch/mode="viewport"
 
 [gui]
 

@@ -39,34 +39,34 @@ var traitChancesPerRoom: Array = [
 		Odds.EPIC: 8,
 		Odds.LEGENDARY: 2
 	},
-]
+];
 
 #Trait Array Meanings: [type, value]
 
 const commonTraits: Dictionary = {
 	"Attack Up": [Types.ATK, 2],
-	"Defense Up": [Types.DEF, 2],
+	"Defense Up": [Types.DEF, 1],
 	"Regen Health": [Types.REGEN, 2],
 	"Speed Up": [Types.SPEED, 750],
 }
 
 const uncommonTraits: Dictionary = {
 	"Attack Up": [Types.ATK, 5],
-	"Defense Up": [Types.DEF, 5],
+	"Defense Up": [Types.DEF, 2],
 	"Regen Health": [Types.REGEN, 5],
 	"Speed Up": [Types.SPEED, 1000],
 }
 
 const rareTraits: Dictionary = {
 	"Attack Up": [Types.ATK, 10],
-	"Defense Up": [Types.DEF, 10],
+	"Defense Up": [Types.DEF, 5],
 	"Regen Health": [Types.REGEN, 10],
 	"Speed Up": [Types.SPEED, 2000],
 }
 
 const epicTraits: Dictionary = {
 	"Attack Up": [Types.ATK, 15],
-	"Defense Up": [Types.DEF, 15],
+	"Defense Up": [Types.DEF, 10],
 	"Regen Health": [Types.REGEN, 15],
 	"Speed Up": [Types.SPEED, 5000],
 	"Dash Cooldown Down": [Types.DASH_CD, 1]
@@ -74,7 +74,7 @@ const epicTraits: Dictionary = {
 
 const legendaryTraits: Dictionary = {
 	"Attack Up": [Types.ATK, 25],
-	"Defense Up": [Types.DEF, 25],
+	"Defense Up": [Types.DEF, 15],
 	"Regen Health": [Types.REGEN, 25],
 	"Speed Up": [Types.SPEED, 15000],
 	"Wipe Out All Enemies": [Types.WIPE, 1],

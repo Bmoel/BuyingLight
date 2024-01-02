@@ -1,7 +1,7 @@
 extends Node2D
 
-const MAIN_MENU = "res://scenes/mainMenu.tscn";
-const ROOM = "res://scenes/room.tscn";
+const MAIN_MENU = "res://scenes/menus/mainMenu.tscn";
+const ROOM = "res://scenes/game/room.tscn";
 
 func _ready():
 	$Buttons/MainMenu.grab_focus();

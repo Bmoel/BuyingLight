@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://scenes/minimap.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/character.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scripts/playerUI.gd" type="Script" id=3]
-[ext_resource path="res://scenes/shopUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ui/minimap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/character/character.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/ui/playerUI.gd" type="Script" id=3]
+[ext_resource path="res://scenes/ui/shopUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://scenes/healthAndCooldown.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/instructions.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/ui/healthAndCooldown.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/windows/instructions.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/windows/Options.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -54,4 +55,8 @@ bbcode_enabled = true
 bbcode_text = "Show shop: [color=#03f0fc]Tab[/color]"
 text = "Show shop: Tab"
 
+[node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource( 8 )]
+
 [node name="Instructions" parent="CanvasLayer" instance=ExtResource( 7 )]
+
+[connection signal="popup_hide" from="CanvasLayer/OptionsMenu" to="." method="_on_OptionsMenu_popup_hide"]

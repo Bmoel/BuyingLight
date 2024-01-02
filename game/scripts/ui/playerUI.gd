@@ -6,6 +6,10 @@ onready var shop = $CanvasLayer/shop;
 onready var information = $CanvasLayer/Information;
 onready var showShopInfo = $CanvasLayer/showShopInstr;
 onready var healthAndCD = $CanvasLayer/HealthAndCooldown;
+onready var optionsMenu = $CanvasLayer/OptionsMenu;
+
+var showOptions: bool = false;
+var isOptionsOpened: bool = false;
 
 const oneHeroInstructions: String = """Hide shop: [color=#03f0fc]Tab[/color]
 ----------------
@@ -29,6 +33,9 @@ func _ready():
 	healthAndCD.connect("playerDied", self, "_playerIsDead");
 
 func _process(_delta):
+	if showOptions and !isOptionsOpened:
+		optionsMenu.popup_centered();
+		isOptionsOpened = true;
 	controlGoldCount();
 
 func _input(_event):
@@ -36,6 +43,11 @@ func _input(_event):
 		shop.visible = !shop.visible;
 		information.visible = !information.visible;
 		showShopInfo.visible = !showShopInfo.visible;
+	elif Input.is_action_just_pressed("ui_cancel"):
+		showOptions = !showOptions;
+		if isOptionsOpened:
+			isOptionsOpened = false;
+			optionsMenu.hide();
 
 func controlGoldCount() -> void:
 	$CanvasLayer/Information.bbcode_text = getInstructions() + str(Global.getCurrentGold());
@@ -74,3 +86,8 @@ func _handleInstructions(visibleValue: bool) -> void:
 		$CanvasLayer/Instructions.popup_centered();
 	else:
 		$CanvasLayer/Instructions.hide();
+
+func _on_OptionsMenu_popup_hide():
+	optionsMenu.hide();
+	showOptions = false;
+	isOptionsOpened = false;

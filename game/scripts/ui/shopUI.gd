@@ -24,7 +24,7 @@ signal boughtReveal(cost);
 
 func _ready():
 	randomize();
-	var traitsPreload = preload("res://scripts/traits.gd");
+	var traitsPreload = preload("res://scripts/character/traits.gd");
 	Traits = traitsPreload.new();
 	setUpgrades();
 

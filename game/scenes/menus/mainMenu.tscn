@@ -1,31 +1,31 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://scripts/mainMenu.gd" type="Script" id=1]
-[ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://scenes/creditsWindow.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Options.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/Boardwalk-Arcade-2.mp3" type="AudioStream" id=5]
-[ext_resource path="res://assets/konamiSound.wav" type="AudioStream" id=6]
+[ext_resource path="res://scripts/menus/mainMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/Boardwalk-Arcade-2.mp3" type="AudioStream" id=2]
+[ext_resource path="res://assets/konamiSound.wav" type="AudioStream" id=3]
+[ext_resource path="res://scenes/windows/creditsWindow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/windows/Options.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 264
-font_data = ExtResource( 2 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 128
-font_data = ExtResource( 2 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 128
-font_data = ExtResource( 2 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 128
-font_data = ExtResource( 2 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 64
-font_data = ExtResource( 2 )
+font_data = ExtResource( 6 )
 
 [node name="mainMenu" type="Node2D"]
 script = ExtResource( 1 )
@@ -87,18 +87,18 @@ focus_neighbour_right = NodePath("../buttonGroup/Play")
 custom_fonts/font = SubResource( 5 )
 text = "Exit"
 
-[node name="CreditsWindow" parent="." instance=ExtResource( 3 )]
+[node name="CreditsWindow" parent="." instance=ExtResource( 4 )]
 
-[node name="OptionsWindow" parent="." instance=ExtResource( 4 )]
+[node name="OptionsWindow" parent="." instance=ExtResource( 5 )]
 
 [node name="bgMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 2 )
 volume_db = -15.0
 autoplay = true
 bus = "Music"
 
 [node name="konamiSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 3 )
 volume_db = -15.0
 bus = "SFX"
 

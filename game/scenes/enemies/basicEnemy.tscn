@@ -1,48 +1,48 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://assets/enemies.png" type="Texture" id=1]
-[ext_resource path="res://assets/light.webp" type="Texture" id=2]
-[ext_resource path="res://scripts/basicEnemy.gd" type="Script" id=3]
-[ext_resource path="res://assets/enemyHit.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/light.webp" type="Texture" id=1]
+[ext_resource path="res://assets/enemies.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemyHit.wav" type="AudioStream" id=3]
+[ext_resource path="res://scripts/enemies/basicEnemy.gd" type="Script" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 369, 203, 16, 25 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 385, 203, 16, 25 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 401, 203, 16, 25 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 417, 203, 16, 25 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 433, 203, 16, 25 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 449, 203, 16, 25 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 465, 203, 16, 25 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 481, 203, 16, 25 )
 
 [sub_resource type="SpriteFrames" id=9]
@@ -60,7 +60,7 @@ extents = Vector2( 4.25, 6 )
 scale = Vector2( 4, 4 )
 collision_layer = 4
 collision_mask = 0
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 light_mask = 0
@@ -71,11 +71,11 @@ position = Vector2( 0, 1 )
 shape = SubResource( 10 )
 
 [node name="Light2D" type="Light2D" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
 texture_scale = 0.5
 
 [node name="enemyHit" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 3 )
 bus = "SFX"
 
 [connection signal="finished" from="enemyHit" to="." method="_on_enemyHit_finished"]

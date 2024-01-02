@@ -1,4 +1,6 @@
 # Buying Light
+Dowloadable and playable at itch.io  
+https://bmoel.itch.io/buying-light
 ## Game Objective
 The game objective is to get to the highest floor that you can, where all of the exits to the next floor are hidden by darkness  
 But fret not, you have the power of illumination, just at the measly cost of 4 gold. Battle your way through monsters to earn gold and reach higher floors, while also improving your stats along the way!
